@@ -1,0 +1,54 @@
+# --- Secrets & Environment Variables ---
+# 절대 공유되어서는 안 되는 API 키와 설정 파일
+.env
+.env.local
+.env.*.local
+
+# --- Python Core ---
+# 파이썬 실행 시 생성되는 캐시 및 컴파일 파일
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# --- Virtual Environments ---
+# 로컬 개발 환경용 가상환경 폴더
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# --- Logs ---
+# 실행 로그 및 에러 로그
+*.log
+logs/
+
+# --- IDEs & Editors ---
+# 개인별 에디터 설정 (팀원마다 다를 수 있음)
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- OS Specific ---
+# 운영체제 생성 임시 파일
+.DS_Store
+Thumbs.db
