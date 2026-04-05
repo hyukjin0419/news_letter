@@ -9,20 +9,11 @@ WRITER_MODEL = "anthropic/claude-sonnet-4-6"
 # 로고 정의
 # ─────────────────────────────────────────
 
-# 이메일용 로고 — Base64 SVG (Gmail 호환, Outlook 제외)
-LOGO_EMAIL = """<div>
-  <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTIiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCA1MiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMiAxMiBROCAyIDE0IDggUTIwIDE0IDI2IDYgUTMyIC0yIDM4IDUgUTQzIDEwIDUwIDciIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLXdpZHRoPSIxLjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZmlsbD0ibm9uZSIvPjwvc3ZnPg=="
-       width="52" height="16" alt="wave" style="display:block;margin-bottom:4px;" />
-  <span style="font-size:13px;font-weight:700;color:#000000;letter-spacing:0.08em;">FIRSTWAVE</span>
-</div>"""
+LOGO_EMAIL = """<img src="https://raw.githubusercontent.com/hyukjin0419/news_letter/main/assets/logo.svg"
+     width="120" height="50" alt="FIRSTWAVE" style="display:block;" />"""
 
-# 브라우저 미리보기용 로고 — 인라인 SVG
-LOGO_PREVIEW = """<div style="display:flex;flex-direction:column;align-items:flex-start;gap:4px;">
-  <svg width="52" height="16" viewBox="0 0 52 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M2 12 Q8 2 14 8 Q20 14 26 6 Q32 -2 38 5 Q43 10 50 7" stroke="#000000" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-  </svg>
-  <span style="font-size:13px;font-weight:700;color:#000000;letter-spacing:0.08em;">FIRSTWAVE</span>
-</div>"""
+LOGO_PREVIEW = """<img src="https://raw.githubusercontent.com/hyukjin0419/news_letter/main/assets/logo.svg"
+     width="120" height="50" alt="FIRSTWAVE" style="display:block;" />"""
 
 
 # ─────────────────────────────────────────
@@ -147,6 +138,7 @@ def _build_points_rows(body_html: str) -> str:
     items = re.findall(r'<li>(.*?)</li>', body_html, re.DOTALL)
     rows = ""
     for item in items:
+        item = re.sub(r'[\U00010000-\U0010ffff]|[\u2600-\u27BF]', '', item)
         item = re.sub(
             r'<code>(.*?)</code>',
             r'<span style="background-color:#f5f5f5;color:#000000;font-size:11px;padding:1px 5px;border-radius:3px;border:1px solid #e5e5e5;font-family:Courier New,monospace;">\1</span>',
@@ -186,10 +178,14 @@ Gemini가 분석한 내용을 바탕으로, 한국 개발자들이 출근길에 
 3. 리듬감 있는 문체: 짧고 간결하게, '~해요', '~죠', '~까요' 해요체를 써줘.
 4. 솔직함과 위트: 엔지니어 고충에 공감하며 가벼운 위트를 섞어줘.
 
+[주의사항]
+- 이모티콘, 이모지, 특수문자(🔥✅❌💡 등)는 절대 사용하지 마.
+- 텍스트와 <code> 태그만 사용해.
+
 [콘텐츠 구성 규칙]
-1. headline: 호기심 자극형 제목
+1. headline: 호기심 자극형 제목 (이모지 없이 텍스트만)
 2. body: 핵심 3가지 <li> 포인트, 기술 용어는 <code> 태그로 강조
-3. insight: 동료에게 해주는 진심 어린 조언
+3. insight: 동료에게 해주는 진심 어린 조언 (이모지 없이 텍스트만)
 
 [출력 형식] JSON만 출력, 다른 텍스트 없이:
 {{
