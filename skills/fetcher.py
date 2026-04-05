@@ -12,6 +12,7 @@ def fetch_top_tech_news(limit=3):
         for i in top_ids:
             s = requests.get(f"https://hacker-news.firebaseio.com/v0/item/{i}.json").json()
             url = s.get('url')
+			print(url)
             content = ""
             
             if url:
