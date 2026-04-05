@@ -1,0 +1,6 @@
+<svg width="240" height="100" viewBox="0 0 240 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 파도 (중앙 정렬) -->
+  <path d="M40 30 Q60 10 80 22 Q100 34 120 14 Q140 -4 160 14 Q180 28 200 20" stroke="#000000" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <!-- FIRSTWAVE 텍스트 -->
+  <text x="120" y="88" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="800" letter-spacing="4" fill="#000000" text-anchor="middle">FIRSTWAVE</text>
+</svg>
