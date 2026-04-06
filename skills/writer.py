@@ -56,7 +56,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
     <!-- FOOTER -->
     <footer>
-      본 뉴스레터는 AI에 의해 자동 생성됩니다.<br>
       FIRSTWAVE · 매일 오전 8시 발신
     </footer>
 
