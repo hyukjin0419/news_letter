@@ -5,147 +5,88 @@ from litellm import completion
 
 WRITER_MODEL = "anthropic/claude-sonnet-4-6"
 
-# ─────────────────────────────────────────
-# 로고 정의
-# ─────────────────────────────────────────
-
-LOGO_EMAIL = """<img src="https://raw.githubusercontent.com/hyukjin0419/news_letter/main/assets/logo.svg"
-     width="120" height="50" alt="FIRSTWAVE" style="display:block;" />"""
-
-LOGO_PREVIEW = """<img src="https://raw.githubusercontent.com/hyukjin0419/news_letter/main/assets/logo.svg"
-     width="120" height="50" alt="FIRSTWAVE" style="display:block;" />"""
-
-
-# ─────────────────────────────────────────
-# HTML 템플릿
-# ─────────────────────────────────────────
-
 HTML_TEMPLATE = """<!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FIRSTWAVE · {date}</title>
+  <meta charset="utf-8">
+  <style>
+    body {{ font-family: 'Pretendard', -apple-system, sans-serif; line-height: 1.6; color: #334155; background-color: #f8fafc; margin: 0; padding: 20px; }}
+    .container {{ max-width: 600px; margin: 0 auto; }}
+
+    /* HEADER */
+    .header {{ text-align: center; padding: 32px 0 24px; }}
+    .logo-text {{ font-size: 13px; font-weight: 800; letter-spacing: 0.12em; color: #000; display: block; margin-bottom: 4px; }}
+    .header-title {{ font-size: 26px; font-weight: 800; color: #0f172a; margin: 8px 0 4px; }}
+    .header-sub {{ font-size: 13px; color: #94a3b8; }}
+    .header-date {{ font-size: 12px; color: #cbd5e1; margin-top: 4px; }}
+
+    /* CARD */
+    .card {{ background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.07); }}
+    .tag {{ background: #eef2ff; color: #4f46e5; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }}
+    .card-title {{ color: #0f172a; margin: 12px 0 8px; font-size: 19px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.35; }}
+    .meta {{ font-size: 12px; color: #94a3b8; margin-bottom: 16px; }}
+
+    /* POINTS */
+    .summary-list {{ margin: 16px 0; padding-left: 20px; color: #475569; }}
+    .summary-list li {{ margin-bottom: 10px; font-size: 14px; line-height: 1.6; }}
+    code {{ background: #f1f5f9; color: #2563eb; padding: 2px 5px; border-radius: 4px; font-family: ui-monospace, monospace; font-size: 0.88em; }}
+
+    /* INSIGHT */
+    .insight-box {{ background: #f8fafc; border-left: 4px solid #6366f1; padding: 16px 18px; border-radius: 0 10px 10px 0; margin-top: 18px; }}
+    .insight-title {{ font-weight: 800; color: #4338ca; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; display: block; }}
+    .insight-text {{ font-size: 13px; color: #475569; line-height: 1.65; }}
+
+    /* FOOTER */
+    footer {{ text-align: center; color: #cbd5e1; font-size: 12px; margin-top: 32px; padding-bottom: 40px; line-height: 1.8; }}
+  </style>
 </head>
-<body style="margin:0;padding:0;background-color:#f5f5f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;">
+<body>
+  <div class="container">
 
-<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f5f5f5;">
-  <tr>
-    <td align="center" style="padding:32px 16px;">
-      <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;">
+    <!-- HEADER -->
+    <div class="header">
+      <span class="logo-text">FIRSTWAVE</span>
+      <div class="header-title">오늘의 기술 첫 번째 파도</div>
+      <div class="header-sub">매일 오전 8시 · HN 상위 3개 엄선</div>
+      <div class="header-date">{date}</div>
+    </div>
 
-        <!-- HEADER -->
-        <tr>
-          <td style="background-color:#ffffff;border:1px solid #e5e5e5;border-radius:12px;padding:28px 28px 22px;">
-            <table width="100%" cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <td>
-                  <!-- H-LOGO -->
-                  {logo}
-                </td>
-                <td align="right" valign="top">
-                  <!-- H-DATE -->
-                  <span style="font-size:11px;color:#999999;">{date}</span>
-                </td>
-              </tr>
-            </table>
-            <!-- H-DIVIDER -->
-            <div style="height:1px;background-color:#f0f0f0;margin:16px 0;"></div>
-            <!-- H-TITLE -->
-            <p style="margin:0 0 8px 0;font-size:22px;font-weight:600;color:#000000;line-height:1.35;">오늘의 기술 첫 번째 파도,<br>가장 먼저 전해드려요</p>
-            <!-- H-SUB -->
-            <p style="margin:0;font-size:13px;color:#666666;">매일 오전 8시 &middot; HN 상위 3개 엄선</p>
-          </td>
-        </tr>
+    <!-- CARDS -->
+    {news_blocks}
 
-        <tr><td style="height:10px;"></td></tr>
+    <!-- FOOTER -->
+    <footer>
+      본 뉴스레터는 AI에 의해 자동 생성됩니다.<br>
+      FIRSTWAVE · 매일 오전 8시 발신
+    </footer>
 
-        <!-- CARDS -->
-        {news_blocks}
-
-        <!-- FOOTER -->
-        <tr>
-          <td style="background-color:#ffffff;border:1px solid #e5e5e5;border-radius:12px;padding:16px 28px;">
-            <table width="100%" cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <!-- F-TEXT -->
-                <td><span style="font-size:11px;color:#999999;">FIRSTWAVE &middot; 매일 오전 8시 발신</span></td>
-                <!-- F-LIVE -->
-                <td align="right">
-                  <span style="display:inline-block;width:6px;height:6px;background-color:#000000;border-radius:50%;vertical-align:middle;margin-right:5px;"></span>
-                  <span style="font-size:11px;color:#000000;font-weight:500;vertical-align:middle;">오늘 발행</span>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-
-      </table>
-    </td>
-  </tr>
-</table>
+  </div>
 </body>
 </html>"""
 
 CARD_TEMPLATE = """
-        <tr>
-          <td style="background-color:#ffffff;border:1px solid #e5e5e5;border-radius:12px;padding:22px 28px;">
-            <!-- C-BADGE + C-META -->
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:12px;">
-              <tr>
-                <td><span style="font-size:11px;font-weight:600;color:#000000;letter-spacing:0.06em;">WAVE {wave_num}</span></td>
-                <td align="right">
-                  <span style="font-size:11px;color:#999999;">{score} pts</span>
-                  <span style="font-size:11px;color:#cccccc;margin:0 4px;">&middot;</span>
-                  <span style="font-size:11px;color:#999999;">{comments} comments</span>
-                </td>
-              </tr>
-            </table>
-            <!-- C-TITLE -->
-            <p style="margin:0 0 14px 0;font-size:16px;font-weight:600;color:#000000;line-height:1.45;">{headline}</p>
-            <!-- C-DIVIDER -->
-            <div style="height:1px;background-color:#f0f0f0;margin-bottom:14px;"></div>
-            <!-- C-POINTS -->
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:16px;">
-              {points_rows}
-            </table>
-            <!-- C-INSIGHT -->
-            <table width="100%" cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <td style="background-color:#fafafa;border:1px solid #eaeaea;border-radius:8px;padding:14px 16px;">
-                  <!-- C-INSIGHT-LABEL -->
-                  <p style="margin:0 0 5px 0;font-size:11px;font-weight:600;color:#000000;">우리가 챙겨갈 점</p>
-                  <!-- C-INSIGHT-TEXT -->
-                  <p style="margin:0;font-size:12px;color:#666666;line-height:1.65;">{insight}</p>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-        <tr><td style="height:10px;"></td></tr>"""
-
-POINT_ROW_TEMPLATE = """
-              <tr>
-                <td width="16" valign="top" style="padding-top:10px;">
-                  <!-- C-POINT-DASH -->
-                  <div style="width:10px;height:1px;background-color:#dddddd;"></div>
-                </td>
-                <td style="padding:4px 0 4px 4px;font-size:13px;color:#444444;line-height:1.6;">{point_text}</td>
-              </tr>"""
+    <div class="card">
+      <span class="tag">WAVE {wave_num}</span>
+      <h2 class="card-title">{headline}</h2>
+      <div class="meta">{score} pts &nbsp;·&nbsp; {comments} comments</div>
+      <ul class="summary-list">
+        {points}
+      </ul>
+      <div class="insight-box">
+        <span class="insight-title">우리가 챙겨갈 점</span>
+        <div class="insight-text">{insight}</div>
+      </div>
+    </div>"""
 
 
-def _build_points_rows(body_html: str) -> str:
+def _build_points(body_html: str) -> str:
+    """<li> 항목 파싱 + 이모지 제거"""
     items = re.findall(r'<li>(.*?)</li>', body_html, re.DOTALL)
-    rows = ""
+    result = ""
     for item in items:
         item = re.sub(r'[\U00010000-\U0010ffff]|[\u2600-\u27BF]', '', item)
-        item = re.sub(
-            r'<code>(.*?)</code>',
-            r'<span style="background-color:#f5f5f5;color:#000000;font-size:11px;padding:1px 5px;border-radius:3px;border:1px solid #e5e5e5;font-family:Courier New,monospace;">\1</span>',
-            item
-        )
-        rows += POINT_ROW_TEMPLATE.format(point_text=item.strip())
-    return rows
+        result += f"<li>{item.strip()}</li>\n"
+    return result
 
 
 def write_newsletter(stories: list) -> str | None:
@@ -226,16 +167,12 @@ Gemini가 분석한 내용을 바탕으로, 한국 개발자들이 출근길에 
                 score=s['score'],
                 comments=s['comments'],
                 headline=b['headline'],
-                points_rows=_build_points_rows(b['body']),
+                points=_build_points(b['body']),
                 insight=b['insight'],
             )
 
-        html = HTML_TEMPLATE.format(
-            date=today,
-            news_blocks=blocks_html,
-            logo=LOGO_EMAIL,
-        )
-        print(f"  ✅ FIRSTWAVE 이메일 HTML 생성 완료 ({len(html)}자)")
+        html = HTML_TEMPLATE.format(date=today, news_blocks=blocks_html)
+        print(f"  ✅ FIRSTWAVE HTML 생성 완료 ({len(html)}자)")
         return html
 
     except Exception as e:

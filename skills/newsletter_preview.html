@@ -1,235 +1,103 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FIRSTWAVE · 2026.04.05</title>
+  <meta charset="utf-8">
+  <style>
+    body { font-family: 'Pretendard', -apple-system, sans-serif; line-height: 1.6; color: #334155; background-color: #f8fafc; margin: 0; padding: 20px; }
+    .container { max-width: 600px; margin: 0 auto; }
+
+    /* HEADER */
+    .header { text-align: center; padding: 32px 0 24px; }
+    .logo-text { font-size: 13px; font-weight: 800; letter-spacing: 0.12em; color: #000; display: block; margin-bottom: 4px; }
+    .header-title { font-size: 26px; font-weight: 800; color: #0f172a; margin: 8px 0 4px; }
+    .header-sub { font-size: 13px; color: #94a3b8; }
+    .header-date { font-size: 12px; color: #cbd5e1; margin-top: 4px; }
+
+    /* CARD */
+    .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.07); }
+    .tag { background: #eef2ff; color: #4f46e5; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+    .card-title { color: #0f172a; margin: 12px 0 8px; font-size: 19px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.35; }
+    .meta { font-size: 12px; color: #94a3b8; margin-bottom: 16px; }
+
+    /* POINTS */
+    .summary-list { margin: 16px 0; padding-left: 20px; color: #475569; }
+    .summary-list li { margin-bottom: 10px; font-size: 14px; line-height: 1.6; }
+    code { background: #f1f5f9; color: #2563eb; padding: 2px 5px; border-radius: 4px; font-family: ui-monospace, monospace; font-size: 0.88em; }
+
+    /* INSIGHT */
+    .insight-box { background: #f8fafc; border-left: 4px solid #6366f1; padding: 16px 18px; border-radius: 0 10px 10px 0; margin-top: 18px; }
+    .insight-title { font-weight: 800; color: #4338ca; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; display: block; }
+    .insight-text { font-size: 13px; color: #475569; line-height: 1.65; }
+
+    /* FOOTER */
+    footer { text-align: center; color: #cbd5e1; font-size: 12px; margin-top: 32px; padding-bottom: 40px; line-height: 1.8; }
+  </style>
 </head>
-<body style="margin:0;padding:0;background-color:#f5f5f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;">
+<body>
+  <div class="container">
 
-<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f5f5f5;">
-  <tr>
-    <td align="center" style="padding:32px 16px;">
-      <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;">
+    <!-- HEADER -->
+    <div class="header">
+      <span class="logo-text">FIRSTWAVE</span>
+      <div class="header-title">오늘의 기술 첫 번째 파도</div>
+      <div class="header-sub">매일 오전 8시 · HN 상위 3개 엄선</div>
+      <div class="header-date">2026.04.06</div>
+    </div>
 
-        <!-- HEADER -->
-        <tr>
-          <td style="background-color:#ffffff;border:1px solid #e5e5e5;border-radius:12px;padding:28px 28px 22px;">
-            <table width="100%" cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <td>
-                  <!-- H-LOGO -->
-                  <img src="https://raw.githubusercontent.com/hyukjin0419/news_letter/main/assets/logo.svg"
-     width="120" height="50" alt="FIRSTWAVE" style="display:block;" />
-                </td>
-                <td align="right" valign="top">
-                  <!-- H-DATE -->
-                  <span style="font-size:11px;color:#999999;">2026.04.05</span>
-                </td>
-              </tr>
-            </table>
-            <!-- H-DIVIDER -->
-            <div style="height:1px;background-color:#f0f0f0;margin:16px 0;"></div>
-            <!-- H-TITLE -->
-            <p style="margin:0 0 8px 0;font-size:22px;font-weight:600;color:#000000;line-height:1.35;">오늘의 기술 첫 번째 파도,<br>가장 먼저 전해드려요</p>
-            <!-- H-SUB -->
-            <p style="margin:0;font-size:13px;color:#666666;">매일 오전 8시 &middot; HN 상위 3개 엄선</p>
-          </td>
-        </tr>
+    <!-- CARDS -->
+    
+    <div class="card">
+      <span class="tag">WAVE 01</span>
+      <h2 class="card-title">Go의 nil을 없애버린 언어가 등장했어요</h2>
+      <div class="meta">289 pts &nbsp;·&nbsp; 142 comments</div>
+      <ul class="summary-list">
+        <li>Hindley-Milner 타입 시스템으로 <code>nil</code>을 컴파일 타임에 완전 차단해요</li>
+<li>Go 패키지 그대로 <code>import "go:fmt"</code> 사용 가능, 결과물도 Go 코드예요</li>
+<li>문법은 Rust — <code>match</code>, <code>Result&lt;T,E&gt;</code>, 기본 불변 변수까지</li>
 
-        <tr><td style="height:10px;"></td></tr>
+      </ul>
+      <div class="insight-box">
+        <span class="insight-title">우리가 챙겨갈 점</span>
+        <div class="insight-text">nil 때문에 새벽에 슬랙 알림 받아본 적 있으신가요. Lisette의 접근법이 Go 생태계에서 자리잡는지 지켜볼 만해요.</div>
+      </div>
+    </div>
+    <div class="card">
+      <span class="tag">WAVE 02</span>
+      <h2 class="card-title">독일 정부가 모바일 앱 보안을 이렇게 검증해요</h2>
+      <div class="meta">156 pts &nbsp;·&nbsp; 89 comments</div>
+      <ul class="summary-list">
+        <li>Android는 <code>KeyAttestation</code> + <code>PlayIntegrity</code>로 기기 무결성 검증해요</li>
+<li>iOS는 <code>AppAttest</code>로 Secure Enclave 기반 앱 서명을 확인해요</li>
+<li><code>RASP</code>로 런타임에도 지속적으로 앱 무결성을 모니터링해요</li>
 
-        <!-- CARDS -->
-        
-        <tr>
-          <td style="background-color:#ffffff;border:1px solid #e5e5e5;border-radius:12px;padding:22px 28px;">
-            <!-- C-BADGE + C-META -->
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:12px;">
-              <tr>
-                <td><span style="font-size:11px;font-weight:600;color:#000000;letter-spacing:0.06em;">WAVE 01</span></td>
-                <td align="right">
-                  <span style="font-size:11px;color:#999999;">289 pts</span>
-                  <span style="font-size:11px;color:#cccccc;margin:0 4px;">&middot;</span>
-                  <span style="font-size:11px;color:#999999;">142 comments</span>
-                </td>
-              </tr>
-            </table>
-            <!-- C-TITLE -->
-            <p style="margin:0 0 14px 0;font-size:16px;font-weight:600;color:#000000;line-height:1.45;">Go의 nil을 없애버린 언어가 등장했어요</p>
-            <!-- C-DIVIDER -->
-            <div style="height:1px;background-color:#f0f0f0;margin-bottom:14px;"></div>
-            <!-- C-POINTS -->
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:16px;">
-              
-              <tr>
-                <td width="16" valign="top" style="padding-top:10px;">
-                  <!-- C-POINT-DASH -->
-                  <div style="width:10px;height:1px;background-color:#dddddd;"></div>
-                </td>
-                <td style="padding:4px 0 4px 4px;font-size:13px;color:#444444;line-height:1.6;">Hindley-Milner 타입 시스템으로 <span style="background-color:#f5f5f5;color:#000000;font-size:11px;padding:1px 5px;border-radius:3px;border:1px solid #e5e5e5;font-family:Courier New,monospace;">nil</span>을 컴파일 타임에 완전 차단해요</td>
-              </tr>
-              <tr>
-                <td width="16" valign="top" style="padding-top:10px;">
-                  <!-- C-POINT-DASH -->
-                  <div style="width:10px;height:1px;background-color:#dddddd;"></div>
-                </td>
-                <td style="padding:4px 0 4px 4px;font-size:13px;color:#444444;line-height:1.6;">Go 패키지 그대로 <span style="background-color:#f5f5f5;color:#000000;font-size:11px;padding:1px 5px;border-radius:3px;border:1px solid #e5e5e5;font-family:Courier New,monospace;">import "go:fmt"</span> 사용 가능, 결과물도 Go 코드예요</td>
-              </tr>
-              <tr>
-                <td width="16" valign="top" style="padding-top:10px;">
-                  <!-- C-POINT-DASH -->
-                  <div style="width:10px;height:1px;background-color:#dddddd;"></div>
-                </td>
-                <td style="padding:4px 0 4px 4px;font-size:13px;color:#444444;line-height:1.6;">문법은 Rust — <span style="background-color:#f5f5f5;color:#000000;font-size:11px;padding:1px 5px;border-radius:3px;border:1px solid #e5e5e5;font-family:Courier New,monospace;">match</span>, <span style="background-color:#f5f5f5;color:#000000;font-size:11px;padding:1px 5px;border-radius:3px;border:1px solid #e5e5e5;font-family:Courier New,monospace;">Result&lt;T,E&gt;</span>, 기본 불변 변수까지</td>
-              </tr>
-            </table>
-            <!-- C-INSIGHT -->
-            <table width="100%" cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <td style="background-color:#fafafa;border:1px solid #eaeaea;border-radius:8px;padding:14px 16px;">
-                  <!-- C-INSIGHT-LABEL -->
-                  <p style="margin:0 0 5px 0;font-size:11px;font-weight:600;color:#000000;">우리가 챙겨갈 점</p>
-                  <!-- C-INSIGHT-TEXT -->
-                  <p style="margin:0;font-size:12px;color:#666666;line-height:1.65;">nil 때문에 새벽에 슬랙 알림 받아본 적 있으신가요. Lisette의 접근법이 Go 생태계에서 자리잡는지 지켜볼 만해요.</p>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-        <tr><td style="height:10px;"></td></tr>
-        <tr>
-          <td style="background-color:#ffffff;border:1px solid #e5e5e5;border-radius:12px;padding:22px 28px;">
-            <!-- C-BADGE + C-META -->
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:12px;">
-              <tr>
-                <td><span style="font-size:11px;font-weight:600;color:#000000;letter-spacing:0.06em;">WAVE 02</span></td>
-                <td align="right">
-                  <span style="font-size:11px;color:#999999;">156 pts</span>
-                  <span style="font-size:11px;color:#cccccc;margin:0 4px;">&middot;</span>
-                  <span style="font-size:11px;color:#999999;">89 comments</span>
-                </td>
-              </tr>
-            </table>
-            <!-- C-TITLE -->
-            <p style="margin:0 0 14px 0;font-size:16px;font-weight:600;color:#000000;line-height:1.45;">독일 정부가 모바일 앱 보안을 이렇게 검증해요</p>
-            <!-- C-DIVIDER -->
-            <div style="height:1px;background-color:#f0f0f0;margin-bottom:14px;"></div>
-            <!-- C-POINTS -->
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:16px;">
-              
-              <tr>
-                <td width="16" valign="top" style="padding-top:10px;">
-                  <!-- C-POINT-DASH -->
-                  <div style="width:10px;height:1px;background-color:#dddddd;"></div>
-                </td>
-                <td style="padding:4px 0 4px 4px;font-size:13px;color:#444444;line-height:1.6;">Android는 <span style="background-color:#f5f5f5;color:#000000;font-size:11px;padding:1px 5px;border-radius:3px;border:1px solid #e5e5e5;font-family:Courier New,monospace;">KeyAttestation</span> + <span style="background-color:#f5f5f5;color:#000000;font-size:11px;padding:1px 5px;border-radius:3px;border:1px solid #e5e5e5;font-family:Courier New,monospace;">PlayIntegrity</span>로 기기 무결성 검증해요</td>
-              </tr>
-              <tr>
-                <td width="16" valign="top" style="padding-top:10px;">
-                  <!-- C-POINT-DASH -->
-                  <div style="width:10px;height:1px;background-color:#dddddd;"></div>
-                </td>
-                <td style="padding:4px 0 4px 4px;font-size:13px;color:#444444;line-height:1.6;">iOS는 <span style="background-color:#f5f5f5;color:#000000;font-size:11px;padding:1px 5px;border-radius:3px;border:1px solid #e5e5e5;font-family:Courier New,monospace;">AppAttest</span>로 Secure Enclave 기반 앱 서명을 확인해요</td>
-              </tr>
-              <tr>
-                <td width="16" valign="top" style="padding-top:10px;">
-                  <!-- C-POINT-DASH -->
-                  <div style="width:10px;height:1px;background-color:#dddddd;"></div>
-                </td>
-                <td style="padding:4px 0 4px 4px;font-size:13px;color:#444444;line-height:1.6;"><span style="background-color:#f5f5f5;color:#000000;font-size:11px;padding:1px 5px;border-radius:3px;border:1px solid #e5e5e5;font-family:Courier New,monospace;">RASP</span>로 런타임에도 지속적으로 앱 무결성을 모니터링해요</td>
-              </tr>
-            </table>
-            <!-- C-INSIGHT -->
-            <table width="100%" cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <td style="background-color:#fafafa;border:1px solid #eaeaea;border-radius:8px;padding:14px 16px;">
-                  <!-- C-INSIGHT-LABEL -->
-                  <p style="margin:0 0 5px 0;font-size:11px;font-weight:600;color:#000000;">우리가 챙겨갈 점</p>
-                  <!-- C-INSIGHT-TEXT -->
-                  <p style="margin:0;font-size:12px;color:#666666;line-height:1.65;">금융/공공 앱 개발한다면 이 아키텍처 참고할 만해요. 국내 전자서명 서비스에도 비슷한 흐름이 올 수 있어요.</p>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-        <tr><td style="height:10px;"></td></tr>
-        <tr>
-          <td style="background-color:#ffffff;border:1px solid #e5e5e5;border-radius:12px;padding:22px 28px;">
-            <!-- C-BADGE + C-META -->
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:12px;">
-              <tr>
-                <td><span style="font-size:11px;font-weight:600;color:#000000;letter-spacing:0.06em;">WAVE 03</span></td>
-                <td align="right">
-                  <span style="font-size:11px;color:#999999;">198 pts</span>
-                  <span style="font-size:11px;color:#cccccc;margin:0 4px;">&middot;</span>
-                  <span style="font-size:11px;color:#999999;">64 comments</span>
-                </td>
-              </tr>
-            </table>
-            <!-- C-TITLE -->
-            <p style="margin:0 0 14px 0;font-size:16px;font-weight:600;color:#000000;line-height:1.45;">Screen Studio 대신 쓸 수 있는 무료 오픈소스 등장했어요</p>
-            <!-- C-DIVIDER -->
-            <div style="height:1px;background-color:#f0f0f0;margin-bottom:14px;"></div>
-            <!-- C-POINTS -->
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:16px;">
-              
-              <tr>
-                <td width="16" valign="top" style="padding-top:10px;">
-                  <!-- C-POINT-DASH -->
-                  <div style="width:10px;height:1px;background-color:#dddddd;"></div>
-                </td>
-                <td style="padding:4px 0 4px 4px;font-size:13px;color:#444444;line-height:1.6;"><span style="background-color:#f5f5f5;color:#000000;font-size:11px;padding:1px 5px;border-radius:3px;border:1px solid #e5e5e5;font-family:Courier New,monospace;">Electron</span> + <span style="background-color:#f5f5f5;color:#000000;font-size:11px;padding:1px 5px;border-radius:3px;border:1px solid #e5e5e5;font-family:Courier New,monospace;">React</span> + <span style="background-color:#f5f5f5;color:#000000;font-size:11px;padding:1px 5px;border-radius:3px;border:1px solid #e5e5e5;font-family:Courier New,monospace;">PixiJS</span> 스택으로 만든 화면 녹화 편집 툴이에요</td>
-              </tr>
-              <tr>
-                <td width="16" valign="top" style="padding-top:10px;">
-                  <!-- C-POINT-DASH -->
-                  <div style="width:10px;height:1px;background-color:#dddddd;"></div>
-                </td>
-                <td style="padding:4px 0 4px 4px;font-size:13px;color:#444444;line-height:1.6;">자동/수동 줌, 모션 블러, 어노테이션 등 핵심 기능은 다 있어요</td>
-              </tr>
-              <tr>
-                <td width="16" valign="top" style="padding-top:10px;">
-                  <!-- C-POINT-DASH -->
-                  <div style="width:10px;height:1px;background-color:#dddddd;"></div>
-                </td>
-                <td style="padding:4px 0 4px 4px;font-size:13px;color:#444444;line-height:1.6;">MIT 라이선스로 개인·상업용 모두 무료, 수정·배포도 자유로워요</td>
-              </tr>
-            </table>
-            <!-- C-INSIGHT -->
-            <table width="100%" cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <td style="background-color:#fafafa;border:1px solid #eaeaea;border-radius:8px;padding:14px 16px;">
-                  <!-- C-INSIGHT-LABEL -->
-                  <p style="margin:0 0 5px 0;font-size:11px;font-weight:600;color:#000000;">우리가 챙겨갈 점</p>
-                  <!-- C-INSIGHT-TEXT -->
-                  <p style="margin:0;font-size:12px;color:#666666;line-height:1.65;">Screen Studio가 비싸서 망설이고 계셨다면 한번 써볼 만해요. 베타라 버그가 있을 수 있으니 중요한 녹화엔 백업 준비해두세요.</p>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-        <tr><td style="height:10px;"></td></tr>
+      </ul>
+      <div class="insight-box">
+        <span class="insight-title">우리가 챙겨갈 점</span>
+        <div class="insight-text">금융/공공 앱 개발한다면 이 아키텍처 참고할 만해요. 국내 전자서명 서비스에도 비슷한 흐름이 올 수 있어요.</div>
+      </div>
+    </div>
+    <div class="card">
+      <span class="tag">WAVE 03</span>
+      <h2 class="card-title">Screen Studio 대신 쓸 수 있는 무료 오픈소스 등장했어요</h2>
+      <div class="meta">198 pts &nbsp;·&nbsp; 64 comments</div>
+      <ul class="summary-list">
+        <li><code>Electron</code> + <code>React</code> + <code>PixiJS</code> 스택으로 만든 화면 녹화 편집 툴이에요</li>
+<li>자동/수동 줌, 모션 블러, 어노테이션 등 핵심 기능은 다 있어요</li>
+<li>MIT 라이선스로 개인·상업용 모두 무료, 수정·배포도 자유로워요</li>
 
-        <!-- FOOTER -->
-        <tr>
-          <td style="background-color:#ffffff;border:1px solid #e5e5e5;border-radius:12px;padding:16px 28px;">
-            <table width="100%" cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <!-- F-TEXT -->
-                <td><span style="font-size:11px;color:#999999;">FIRSTWAVE &middot; 매일 오전 8시 발신</span></td>
-                <!-- F-LIVE -->
-                <td align="right">
-                  <span style="display:inline-block;width:6px;height:6px;background-color:#000000;border-radius:50%;vertical-align:middle;margin-right:5px;"></span>
-                  <span style="font-size:11px;color:#000000;font-weight:500;vertical-align:middle;">오늘 발행</span>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
+      </ul>
+      <div class="insight-box">
+        <span class="insight-title">우리가 챙겨갈 점</span>
+        <div class="insight-text">Screen Studio가 비싸서 망설이고 계셨다면 한번 써볼 만해요. 베타라 버그가 있을 수 있으니 중요한 녹화엔 백업 준비해두세요.</div>
+      </div>
+    </div>
 
-      </table>
-    </td>
-  </tr>
-</table>
+    <!-- FOOTER -->
+    <footer>
+      본 뉴스레터는 AI에 의해 자동 생성됩니다.<br>
+      FIRSTWAVE · 매일 오전 8시 발신
+    </footer>
+
+  </div>
 </body>
 </html>

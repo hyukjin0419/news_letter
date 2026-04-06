@@ -1,14 +1,13 @@
 """
 preview.py — API 호출 없이 디자인 확인용
-SVG 로고 포함한 브라우저 미리보기용 HTML을 생성합니다.
-이메일 발송용(writer.py)과 로고만 다르고 나머지는 동일해요.
+더미 데이터로 newsletter_preview.html 생성 후 브라우저로 자동으로 열어줍니다.
 
 실행: python preview.py
 """
 import os
 import webbrowser
 from datetime import datetime
-from writer import HTML_TEMPLATE, CARD_TEMPLATE, POINT_ROW_TEMPLATE, _build_points_rows, LOGO_PREVIEW
+from writer import HTML_TEMPLATE, CARD_TEMPLATE, _build_points
 
 DUMMY_BLOCKS = [
     {
@@ -59,16 +58,11 @@ if __name__ == "__main__":
             score=b["score"],
             comments=b["comments"],
             headline=b["headline"],
-            points_rows=_build_points_rows(b["body"]),
+            points=_build_points(b["body"]),
             insight=b["insight"],
         )
 
-    # 브라우저 미리보기 시 SVG 로고 사용
-    html = HTML_TEMPLATE.format(
-        date=today,
-        news_blocks=blocks_html,
-        logo=LOGO_PREVIEW,
-    )
+    html = HTML_TEMPLATE.format(date=today, news_blocks=blocks_html)
 
     output_path = "newsletter_preview.html"
     with open(output_path, "w", encoding="utf-8") as f:
