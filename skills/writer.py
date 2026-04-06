@@ -72,7 +72,7 @@ CARD_TEMPLATE = """
         {points}
       </ul>
       <div class="insight-box">
-        <span class="insight-title">우리가 챙겨갈 점</span>
+        <span class="insight-title">💡 오늘의 인사이트</span>
         <div class="insight-text">{insight}</div>
       </div>
     </div>"""
