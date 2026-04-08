@@ -7,7 +7,7 @@ preview.py — API 호출 없이 디자인 확인용
 import os
 import webbrowser
 from datetime import datetime
-from writer import HTML_TEMPLATE, CARD_TEMPLATE, _build_points
+from writer import HTML_TEMPLATE, CARD_TEMPLATE, LOGO_URL, _build_points_rows
 
 DUMMY_BLOCKS = [
     {
@@ -49,7 +49,7 @@ DUMMY_BLOCKS = [
 ]
 
 if __name__ == "__main__":
-    today = datetime.now().strftime("%Y.%m.%d")
+    today = datetime.now().strftime("%Y-%m-%d")
 
     blocks_html = ""
     for b in DUMMY_BLOCKS:
@@ -58,11 +58,15 @@ if __name__ == "__main__":
             score=b["score"],
             comments=b["comments"],
             headline=b["headline"],
-            points=_build_points(b["body"]),
+            points_rows=_build_points_rows(b["body"]),
             insight=b["insight"],
         )
 
-    html = HTML_TEMPLATE.format(date=today, news_blocks=blocks_html)
+    html = HTML_TEMPLATE.format(
+        date=today,
+        news_blocks=blocks_html,
+        logo_url=LOGO_URL,
+    )
 
     output_path = "newsletter_preview.html"
     with open(output_path, "w", encoding="utf-8") as f:

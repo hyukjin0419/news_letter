@@ -4,88 +4,134 @@ from datetime import datetime
 from litellm import completion
 
 WRITER_MODEL = "anthropic/claude-sonnet-4-6"
+LOGO_URL = "https://raw.githubusercontent.com/hyukjin0419/news_letter/main/assets/logo.svg"
+ARCHIVE_BASE_URL = "https://hyukjin0419.github.io/news_letter/archive"
 
-HTML_TEMPLATE = """<!DOCTYPE html>
-<html>
+
+HTML_TEMPLATE = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="utf-8">
-  <style>
-    body {{ font-family: 'Pretendard', -apple-system, sans-serif; line-height: 1.6; color: #334155; background-color: #f8fafc; margin: 0; padding: 20px; }}
-    .container {{ max-width: 600px; margin: 0 auto; }}
-
-    /* HEADER */
-    .header {{ text-align: center; padding: 32px 0 24px; }}
-    .logo-text {{ font-size: 13px; font-weight: 800; letter-spacing: 0.12em; color: #000; display: block; margin-bottom: 4px; }}
-    .header-title {{ font-size: 26px; font-weight: 800; color: #0f172a; margin: 8px 0 4px; }}
-    .header-sub {{ font-size: 13px; color: #94a3b8; }}
-    .header-date {{ font-size: 12px; color: #cbd5e1; margin-top: 4px; }}
-
-    /* CARD */
-    .card {{ background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.07); }}
-    .tag {{ background: #eef2ff; color: #4f46e5; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }}
-    .card-title {{ color: #0f172a; margin: 12px 0 8px; font-size: 19px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.35; }}
-    .meta {{ font-size: 12px; color: #94a3b8; margin-bottom: 16px; }}
-
-    /* POINTS */
-    .summary-list {{ margin: 16px 0; padding-left: 20px; color: #475569; }}
-    .summary-list li {{ margin-bottom: 10px; font-size: 14px; line-height: 1.6; }}
-    code {{ background: #f1f5f9; color: #2563eb; padding: 2px 5px; border-radius: 4px; font-family: ui-monospace, monospace; font-size: 0.88em; }}
-
-    /* INSIGHT */
-    .insight-box {{ background: #f8fafc; border-left: 4px solid #6366f1; padding: 16px 18px; border-radius: 0 10px 10px 0; margin-top: 18px; }}
-    .insight-title {{ font-weight: 800; color: #4338ca; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; display: block; }}
-    .insight-text {{ font-size: 13px; color: #475569; line-height: 1.65; }}
-
-    /* FOOTER */
-    footer {{ text-align: center; color: #cbd5e1; font-size: 12px; margin-top: 32px; padding-bottom: 40px; line-height: 1.8; }}
-  </style>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIRSTWAVE · {date}</title>
 </head>
-<body>
-  <div class="container">
+<body style="margin:0;padding:0;background-color:#f0f0ee;font-family:Arial,sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;word-break:keep-all;">
 
-    <!-- HEADER -->
-    <div class="header">
-      <span class="logo-text">FIRSTWAVE</span>
-      <div class="header-title">오늘의 기술 첫 번째 파도</div>
-      <div class="header-sub">매일 오전 8시 · HN 상위 3개 엄선</div>
-      <div class="header-date">{date}</div>
+  <div style="background-color:#f0f0ee;padding:36px 16px;">
+    <div style="max-width:560px;margin:0 auto;width:100%;">
+
+      <!-- ===== HEADER ===== -->
+      <div style="background-color:#ffffff;border:1px solid #e0e0dc;border-radius:12px;padding:32px 36px 28px;margin-bottom:10px;">
+
+        <!-- H-LOGO + H-DATE -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;">
+          <tr>
+            <td style="vertical-align:top;">
+              <img src="{logo_url}" width="130" height="44" alt="FIRSTWAVE" style="display:block;border:0;" />
+            </td>
+            <td align="right" style="vertical-align:top;">
+              <span style="font-size:11px;color:#aaaaaa;font-family:Arial,sans-serif;padding-top:4px;">{date}</span>
+            </td>
+          </tr>
+        </table>
+
+        <!-- H-DIVIDER -->
+        <div style="height:1px;background-color:#efefeb;margin-bottom:20px;">&nbsp;</div>
+
+        <!-- H-TITLE -->
+        <p style="margin:0 0 10px 0;font-size:24px;font-weight:700;color:#0a0a0a;line-height:1.3;letter-spacing:-0.02em;font-family:Arial,sans-serif;word-break:keep-all;">오늘의 기술 첫 번째 파도,<br/>가장 먼저 전해드려요</p>
+
+        <!-- H-SUB -->
+        <p style="margin:0;font-size:13px;color:#999999;font-family:Arial,sans-serif;">매일 오전 8시 &middot; HN 상위 3개 엄선</p>
+
+      </div>
+
+      <!-- ===== CARDS ===== -->
+      {news_blocks}
+
+      <!-- ===== FOOTER ===== -->
+      <div style="background-color:#ffffff;border:1px solid #e0e0dc;border-radius:12px;padding:18px 36px;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td style="vertical-align:middle;">
+              <span style="font-size:11px;color:#bbbbbb;font-family:Arial,sans-serif;">FIRSTWAVE &middot; 매일 오전 8시 발신</span>
+            </td>
+            <td align="right" style="vertical-align:middle;">
+              <span style="font-size:11px;color:#0a0a0a;font-weight:700;font-family:Arial,sans-serif;">&#9679; 오늘 발행</span>
+            </td>
+          </tr>
+        </table>
+      </div>
+
     </div>
-
-    <!-- CARDS -->
-    {news_blocks}
-
-    <!-- FOOTER -->
-    <footer>
-      FIRSTWAVE · 매일 오전 8시 발신
-    </footer>
-
   </div>
+
 </body>
 </html>"""
 
+
 CARD_TEMPLATE = """
-    <div class="card">
-      <span class="tag">WAVE {wave_num}</span>
-      <h2 class="card-title">{headline}</h2>
-      <div class="meta">{score} pts &nbsp;·&nbsp; {comments} comments</div>
-      <ul class="summary-list">
-        {points}
-      </ul>
-      <div class="insight-box">
-        <span class="insight-title">💡 오늘의 인사이트</span>
-        <div class="insight-text">{insight}</div>
-      </div>
-    </div>"""
+      <!-- CARD -->
+      <div style="background-color:#ffffff;border:1px solid #e0e0dc;border-radius:12px;padding:28px 36px;margin-bottom:10px;word-break:keep-all;">
+
+        <!-- C-BADGE + C-META -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:14px;">
+          <tr>
+            <td style="vertical-align:middle;">
+              <span style="font-size:11px;font-weight:700;color:#ffffff;background-color:#0a0a0a;letter-spacing:0.08em;font-family:Arial,sans-serif;padding:4px 10px;border-radius:4px;">WAVE {wave_num}</span>
+            </td>
+            <td align="right" style="vertical-align:middle;">
+              <span style="font-size:11px;color:#bbbbbb;font-family:Arial,sans-serif;">{score} pts &middot; {comments} comments</span>
+            </td>
+          </tr>
+        </table>
+
+        <!-- C-TITLE -->
+        <p style="margin:0 0 18px 0;font-size:17px;font-weight:700;color:#0a0a0a;line-height:1.45;letter-spacing:-0.01em;font-family:Arial,sans-serif;word-break:keep-all;">{headline}</p>
+
+        <!-- C-DIVIDER -->
+        <div style="height:1px;background-color:#f0f0ec;margin-bottom:18px;">&nbsp;</div>
+
+        <!-- C-POINTS -->
+        <div style="margin-bottom:20px;">
+          {points_rows}
+        </div>
+
+        <!-- C-INSIGHT -->
+        <div style="background-color:#f7f7f5;border-left:3px solid #0a0a0a;padding:16px 18px;border-radius:0 8px 8px 0;">
+          <p style="margin:0 0 6px 0;font-size:12px;font-weight:700;color:#0a0a0a;letter-spacing:0.06em;font-family:Arial,sans-serif;">&#128161; 오늘의 인사이트</p>
+          <div style="height:1px;background-color:#e8e8e4;margin-bottom:8px;">&nbsp;</div>
+          <p style="margin:0;font-size:13px;color:#555555;line-height:1.7;font-family:Arial,sans-serif;word-break:keep-all;">{insight}</p>
+        </div>
+
+      </div>"""
 
 
-def _build_points(body_html: str) -> str:
-    """<li> 항목 파싱 + 이모지 제거"""
+POINT_ROW_TEMPLATE = """
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-bottom:1px solid #f5f5f3;">
+            <tr>
+              <td width="18" valign="top" style="padding:8px 0;font-size:14px;color:#0a0a0a;line-height:1.6;">&#8226;</td>
+              <td style="padding:8px 0;font-size:13px;color:#333333;line-height:1.7;font-family:Arial,sans-serif;word-break:keep-all;">{point_text}</td>
+            </tr>
+          </table>"""
+
+
+def _build_points_rows(body_html: str) -> str:
     items = re.findall(r'<li>(.*?)</li>', body_html, re.DOTALL)
-    result = ""
-    for item in items:
+    rows = ""
+    for i, item in enumerate(items):
         item = re.sub(r'[\U00010000-\U0010ffff]|[\u2600-\u27BF]', '', item)
-        result += f"<li>{item.strip()}</li>\n"
-    return result
+        item = re.sub(
+            r'<code>(.*?)</code>',
+            r'<span style="background-color:#f0f0ee;color:#0a0a0a;font-size:12px;padding:2px 6px;border-radius:3px;font-family:Arial,sans-serif;font-weight:700;">\1</span>',
+            item
+        )
+        # 마지막 포인트는 border-bottom 없애기
+        row = POINT_ROW_TEMPLATE.format(point_text=item.strip())
+        if i == len(items) - 1:
+            row = row.replace("border-bottom:1px solid #f5f5f3;", "border-bottom:none;")
+        rows += row
+    return rows
 
 
 def write_newsletter(stories: list) -> str | None:
@@ -156,7 +202,7 @@ Gemini가 분석한 내용을 바탕으로, 한국 개발자들이 출근길에 
             raise ValueError("응답에서 JSON 구조를 찾을 수 없습니다.")
 
         data = json.loads(json_match.group())
-        today = datetime.now().strftime("%Y.%m.%d")
+        today = datetime.now().strftime("%Y-%m-%d")
 
         blocks_html = ""
         for i, b in enumerate(data.get('blocks', [])):
@@ -166,12 +212,16 @@ Gemini가 분석한 내용을 바탕으로, 한국 개발자들이 출근길에 
                 score=s['score'],
                 comments=s['comments'],
                 headline=b['headline'],
-                points=_build_points(b['body']),
+                points_rows=_build_points_rows(b['body']),
                 insight=b['insight'],
             )
 
-        html = HTML_TEMPLATE.format(date=today, news_blocks=blocks_html)
-        print(f"  ✅ FIRSTWAVE HTML 생성 완료 ({len(html)}자)")
+        html = HTML_TEMPLATE.format(
+            date=today,
+            news_blocks=blocks_html,
+            logo_url=LOGO_URL,
+        )
+        print(f"  ✅ FIRSTWAVE 이메일 HTML 생성 완료 ({len(html)}자)")
         return html
 
     except Exception as e:
