@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIRSTWAVE · 아카이브</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #fafaf8;
+      --gray-100: #f0efe9;
+      --gray-300: #d4d2c9;
+      --gray-500: #8a8880;
+      --gray-700: #4a4844;
+      --accent: #1a1a1a;
+    }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      padding: 24px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--gray-300);
+    }
+
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      text-decoration: none;
+    }
+
+    .nav-logo svg { display: block; }
+
+    .nav-logo-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: var(--black);
+    }
+
+    .nav-right {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--gray-500);
+      letter-spacing: 0.08em;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 80px 48px 48px;
+      border-bottom: 1px solid var(--gray-300);
+    }
+
+    .hero-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--gray-500);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--black);
+      margin-bottom: 20px;
+    }
+
+    .hero-title em {
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: var(--gray-500);
+      font-weight: 300;
+    }
+
+    /* ARCHIVE LIST */
+    .archive-section {
+      padding: 0 48px 80px;
+    }
+
+    .archive-header {
+      display: grid;
+      grid-template-columns: 160px 1fr 120px;
+      gap: 24px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--gray-300);
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--gray-500);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .archive-list { list-style: none; }
+
+    .archive-item {
+      display: grid;
+      grid-template-columns: 160px 1fr 120px;
+      gap: 24px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--gray-100);
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.15s;
+      cursor: pointer;
+    }
+
+    .archive-item:hover { background: var(--gray-100); margin: 0 -48px; padding: 24px 48px; }
+
+    .item-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      color: var(--gray-500);
+      letter-spacing: 0.04em;
+    }
+
+    .item-title {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1.4;
+    }
+
+    .item-arrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--gray-300);
+      text-align: right;
+      transition: color 0.15s, transform 0.15s;
+    }
+
+    .archive-item:hover .item-arrow {
+      color: var(--black);
+    }
+
+    /* EMPTY STATE */
+    .empty {
+      padding: 80px 0;
+      text-align: center;
+      color: var(--gray-500);
+    }
+
+    .empty-icon {
+      font-family: 'DM Mono', monospace;
+      font-size: 32px;
+      margin-bottom: 16px;
+      opacity: 0.3;
+    }
+
+    .empty-text {
+      font-size: 14px;
+      font-weight: 300;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 24px 48px;
+      border-top: 1px solid var(--gray-300);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-text {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--gray-500);
+      letter-spacing: 0.06em;
+    }
+
+    .footer-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--black);
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+
+    @media (max-width: 600px) {
+      nav, .hero, .archive-section, footer { padding-left: 24px; padding-right: 24px; }
+      .archive-header, .archive-item { grid-template-columns: 100px 1fr; }
+      .archive-header > *:last-child, .archive-item > *:last-child { display: none; }
+      .archive-item:hover { margin: 0 -24px; padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="../index.html">
+      <img src="https://raw.githubusercontent.com/hyukjin0419/news_letter/main/assets/logo.svg" 
+        width="130" height="44" alt="FIRSTWAVE" />
+      <span class="nav-logo-name">FIRSTWAVE</span>
+    </a>
+    <span class="nav-right">ARCHIVE</span>
+  </nav>
+
+  <section class="hero">
+    <p class="hero-label">발송 기록</p>
+    <h1 class="hero-title">지금까지 보낸<br><em>모든 파도</em></h1>
+    <p class="hero-sub">매일 오전 8시, HN 상위 기사 3개를 분석해 전달해드려요</p>
+  </section>
+
+  <section class="archive-section">
+    <div class="archive-header">
+      <span>날짜</span>
+      <span>주요 기사</span>
+      <span></span>
+    </div>
+
+    <ul class="archive-list" id="archiveList">
+      <!-- JS로 동적 생성 -->
+    </ul>
+
+    <div class="empty" id="emptyState" style="display:none;">
+      <div class="empty-icon">〰</div>
+      <p class="empty-text">아직 발송된 뉴스레터가 없어요</p>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-text">
+      <span class="footer-dot"></span>
+      FIRSTWAVE · 매일 오전 8시 발신
+    </span>
+    <span class="footer-text">hyukjin0419.github.io/news_letter</span>
+  </footer>
+
+  <script>
+    // archive/ 폴더의 HTML 파일 목록
+    // main.py가 발송 후 이 목록을 자동 업데이트해요
+      
+    const archives = [
+      // { date: "2026-04-07", title: "Go의 nil을 없애버린 언어 외 2건" },
+      { date: "2026-04-06", title: "After 20 years I turned off Google Adsen 외 2건" },
+      { date: "2026-04-07", title: "After 20 years I turned off Google Adsen 외 2건" },
+      { date: "2026-04-08", title: "Project Glasswing: Securing critical sof 외 2건" },
+      { date: "2026-04-08", title: "Project Glasswing: Securing critical sof 외 2건" },
+    ];
+
+    const list = document.getElementById('archiveList');
+    const empty = document.getElementById('emptyState');
+
+    if (archives.length === 0) {
+      empty.style.display = 'block';
+    } else {
+      archives
+        .sort((a, b) => b.date.localeCompare(a.date))
+        .forEach(item => {
+          const li = document.createElement('li');
+          li.innerHTML = `
+            <a class="archive-item" href="${item.date}.html">
+              <span class="item-date">${item.date}</span>
+              <span class="item-title">${item.title}</span>
+              <span class="item-arrow">→</span>
+            </a>`;
+          list.appendChild(li);
+        });
+    }
+  </script>
+
+</body>
+</html>

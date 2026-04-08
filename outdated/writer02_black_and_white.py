@@ -24,16 +24,10 @@ HTML_TEMPLATE = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN
       <div style="background-color:#ffffff;border:1px solid #e0e0dc;border-radius:12px;padding:32px 36px 28px;margin-bottom:10px;">
 
         <!-- H-LOGO + H-DATE -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;">
-          <tr>
-            <td style="vertical-align:top;">
-              <img src="{logo_url}" width="130" height="44" alt="FIRSTWAVE" style="display:block;border:0;" />
-            </td>
-            <td align="right" style="vertical-align:top;">
-              <span style="font-size:11px;color:#aaaaaa;font-family:Arial,sans-serif;padding-top:4px;">{date}</span>
-            </td>
-          </tr>
-        </table>
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;">
+          <img src="{logo_url}" width="130" height="44" alt="FIRSTWAVE" style="display:block;border:0;" />
+          <span style="font-size:11px;color:#aaaaaa;font-family:Arial,sans-serif;padding-top:4px;">{date}</span>
+        </div>
 
         <!-- H-DIVIDER -->
         <div style="height:1px;background-color:#efefeb;margin-bottom:20px;">&nbsp;</div>
@@ -51,16 +45,10 @@ HTML_TEMPLATE = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN
 
       <!-- ===== FOOTER ===== -->
       <div style="background-color:#ffffff;border:1px solid #e0e0dc;border-radius:12px;padding:18px 36px;">
-        <table width="100%" cellpadding="0" cellspacing="0" border="0">
-          <tr>
-            <td style="vertical-align:middle;">
-              <span style="font-size:11px;color:#bbbbbb;font-family:Arial,sans-serif;">FIRSTWAVE &middot; 매일 오전 8시 발신</span>
-            </td>
-            <td align="right" style="vertical-align:middle;">
-              <span style="font-size:11px;color:#0a0a0a;font-weight:700;font-family:Arial,sans-serif;">&#9679; 오늘 발행</span>
-            </td>
-          </tr>
-        </table>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-size:11px;color:#bbbbbb;font-family:Arial,sans-serif;">FIRSTWAVE &middot; 매일 오전 8시 발신</span>
+          <span style="font-size:11px;color:#0a0a0a;font-weight:700;font-family:Arial,sans-serif;">&#9679; 오늘 발행</span>
+        </div>
       </div>
 
     </div>
@@ -75,16 +63,10 @@ CARD_TEMPLATE = """
       <div style="background-color:#ffffff;border:1px solid #e0e0dc;border-radius:12px;padding:28px 36px;margin-bottom:10px;word-break:keep-all;">
 
         <!-- C-BADGE + C-META -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:14px;">
-          <tr>
-            <td style="vertical-align:middle;">
-              <span style="font-size:11px;font-weight:700;color:#ffffff;background-color:#0a0a0a;letter-spacing:0.08em;font-family:Arial,sans-serif;padding:4px 10px;border-radius:4px;">WAVE {wave_num}</span>
-            </td>
-            <td align="right" style="vertical-align:middle;">
-              <span style="font-size:11px;color:#bbbbbb;font-family:Arial,sans-serif;">{score} pts &middot; {comments} comments</span>
-            </td>
-          </tr>
-        </table>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+          <span style="font-size:11px;font-weight:700;color:#ffffff;background-color:#0a0a0a;letter-spacing:0.08em;font-family:Arial,sans-serif;padding:4px 10px;border-radius:4px;">WAVE {wave_num}</span>
+          <span style="font-size:11px;color:#bbbbbb;font-family:Arial,sans-serif;">{score} pts &middot; {comments} comments</span>
+        </div>
 
         <!-- C-TITLE -->
         <p style="margin:0 0 18px 0;font-size:17px;font-weight:700;color:#0a0a0a;line-height:1.45;letter-spacing:-0.01em;font-family:Arial,sans-serif;word-break:keep-all;">{headline}</p>
@@ -99,7 +81,7 @@ CARD_TEMPLATE = """
 
         <!-- C-INSIGHT -->
         <div style="background-color:#f7f7f5;border-left:3px solid #0a0a0a;padding:16px 18px;border-radius:0 8px 8px 0;">
-          <p style="margin:0 0 6px 0;font-size:12px;font-weight:700;color:#0a0a0a;letter-spacing:0.06em;font-family:Arial,sans-serif;">&#128161; 오늘의 인사이트</p>
+          <p style="margin:0 0 6px 0;font-size:12px;font-weight:700;color:#0a0a0a;letter-spacing:0.06em;font-family:Arial,sans-serif;">우리가 챙겨갈 점</p>
           <div style="height:1px;background-color:#e8e8e4;margin-bottom:8px;">&nbsp;</div>
           <p style="margin:0;font-size:13px;color:#555555;line-height:1.7;font-family:Arial,sans-serif;word-break:keep-all;">{insight}</p>
         </div>
@@ -108,12 +90,10 @@ CARD_TEMPLATE = """
 
 
 POINT_ROW_TEMPLATE = """
-          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-bottom:1px solid #f5f5f3;">
-            <tr>
-              <td width="18" valign="top" style="padding:8px 0;font-size:14px;color:#0a0a0a;line-height:1.6;">&#8226;</td>
-              <td style="padding:8px 0;font-size:13px;color:#333333;line-height:1.7;font-family:Arial,sans-serif;word-break:keep-all;">{point_text}</td>
-            </tr>
-          </table>"""
+          <div style="display:flex;align-items:flex-start;padding:8px 0;border-bottom:1px solid #f5f5f3;">
+            <span style="font-size:14px;color:#0a0a0a;margin-right:10px;margin-top:1px;flex-shrink:0;line-height:1.6;">&#8226;</span>
+            <p style="margin:0;font-size:13px;color:#333333;line-height:1.7;font-family:Arial,sans-serif;word-break:keep-all;">{point_text}</p>
+          </div>"""
 
 
 def _build_points_rows(body_html: str) -> str:
@@ -123,7 +103,7 @@ def _build_points_rows(body_html: str) -> str:
         item = re.sub(r'[\U00010000-\U0010ffff]|[\u2600-\u27BF]', '', item)
         item = re.sub(
             r'<code>(.*?)</code>',
-            r'<span style="background-color:#f0f0ee;color:#0a0a0a;font-size:12px;padding:2px 6px;border-radius:3px;font-family:Arial,sans-serif;font-weight:700;">\1</span>',
+            r'<span style="background-color:#f0f0ee;color:#0a0a0a;font-size:11px;padding:2px 6px;border-radius:3px;font-family:Courier New,monospace;font-weight:700;">\1</span>',
             item
         )
         # 마지막 포인트는 border-bottom 없애기
@@ -184,8 +164,8 @@ Gemini가 분석한 내용을 바탕으로, 한국 개발자들이 출근길에 
   ]
 }}
 
-
 데이터: {json.dumps(payload, ensure_ascii=False)}"""
+
     try:
         response = completion(
             model=WRITER_MODEL,
