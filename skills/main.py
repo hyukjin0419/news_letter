@@ -84,9 +84,9 @@ def save_archive(html: str, date: str, stories: list) -> None:
 
     # archives 배열 안에 새 항목 추가
     updated = content.replace(
-        "    // main.py가 발송 후 이 목록을 자동 업데이트해요",
-        f"    // main.py가 발송 후 이 목록을 자동 업데이트해요\n{new_entry}"
-    )
+    "    const archives = [",
+    f"    const archives = [\n{new_entry}"
+)
 
     with open(ARCHIVE_INDEX, "w", encoding="utf-8") as f:
         f.write(updated)
