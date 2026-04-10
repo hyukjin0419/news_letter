@@ -46,7 +46,7 @@ def main():
 
     # 실제/미리보기 모드: 전체 파이프라인
     print("\n🔎 [1] 기사 수집 중...")
-    stories = fetch_top_tech_news(limit=1)
+    stories = fetch_top_tech_news(limit=3)
     if not stories:
         print("❌ 수집된 기사가 없습니다.")
         return

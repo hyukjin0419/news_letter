@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIRSTWAVE · 개인정보처리방침</title>
+  <link rel="icon" type="image/svg+xml" href="https://raw.githubusercontent.com/hyukjin0419/news_letter/main/docs/assets/logo.svg">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #fafaf8;
+      --gray-100: #f0efe9;
+      --gray-300: #d4d2c9;
+      --gray-500: #8a8880;
+      --gray-700: #4a4844;
+    }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    nav {
+      padding: 24px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--gray-300);
+    }
+
+    .nav-logo { display: flex; flex-direction: column; gap: 4px; text-decoration: none; }
+    .nav-right { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gray-500); letter-spacing: 0.08em; }
+
+    .content {
+      flex: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 64px 24px 80px;
+    }
+
+    .page-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--gray-500);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .page-label::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--gray-300);
+    }
+
+    .page-title {
+      font-size: 36px;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .page-title strong { font-weight: 600; }
+
+    .page-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--gray-500);
+      margin-bottom: 48px;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--gray-100);
+      margin: 40px 0;
+    }
+
+    .section { margin-bottom: 40px; }
+
+    .section-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--black);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .section p {
+      font-size: 15px;
+      color: var(--gray-700);
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: 12px;
+    }
+
+    .section p:last-child { margin-bottom: 0; }
+
+    .section ul {
+      list-style: none;
+      margin-top: 8px;
+    }
+
+    .section ul li {
+      font-size: 15px;
+      color: var(--gray-700);
+      line-height: 1.8;
+      font-weight: 300;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--gray-100);
+      display: flex;
+      gap: 12px;
+    }
+
+    .section ul li::before {
+      content: '—';
+      color: var(--gray-300);
+      flex-shrink: 0;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .section ul li:last-child { border-bottom: none; }
+
+    .highlight-box {
+      background: var(--gray-100);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-top: 16px;
+    }
+
+    .highlight-box p {
+      font-size: 14px;
+      color: var(--gray-700);
+      line-height: 1.7;
+      margin-bottom: 0;
+    }
+
+    .contact-box {
+      background: var(--black);
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin-top: 40px;
+    }
+
+    .contact-box p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+
+    .contact-box p:last-child { margin-bottom: 0; }
+
+    .contact-box strong { color: #ffffff; }
+
+    footer {
+      padding: 24px 48px;
+      border-top: 1px solid var(--gray-100);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-text { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gray-500); }
+
+    @media (max-width: 600px) {
+      nav, footer { padding: 20px 24px; }
+      .content { padding: 40px 24px 60px; }
+      .page-title { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="./index.html">
+      <img src="https://raw.githubusercontent.com/hyukjin0419/news_letter/main/docs/assets/logo.svg"
+           width="130" height="44" alt="FIRSTWAVE" />
+    </a>
+    <span class="nav-right">PRIVACY</span>
+  </nav>
+
+  <div class="content">
+
+    <p class="page-label">법적 고지</p>
+    <h1 class="page-title">개인정보<br><strong>처리방침</strong></h1>
+    <p class="page-date">시행일: 2026년 4월 10일</p>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <p>FIRSTWAVE(이하 '서비스')는 구독자의 개인정보를 소중히 여겨요. 이 방침은 수집하는 정보와 그 사용 방법을 명확하게 설명해요.</p>
+    </div>
+
+    <!-- 1. 수집 항목 -->
+    <div class="section">
+      <p class="section-title">01 · 수집하는 정보</p>
+      <ul>
+        <li>이메일 주소 (필수)</li>
+        <li>이름 (선택)</li>
+        <li>관심 분야 (선택)</li>
+        <li>직군 및 연차 (선택)</li>
+        <li>구독 신청일</li>
+      </ul>
+    </div>
+
+    <!-- 2. 수집 목적 -->
+    <div class="section">
+      <p class="section-title">02 · 수집 목적</p>
+      <ul>
+        <li>매일 오전 8시 뉴스레터 발송</li>
+        <li>구독 취소 처리</li>
+        <li>서비스 관련 중요 공지 전달</li>
+      </ul>
+      <div class="highlight-box">
+        <p>수집한 개인정보는 뉴스레터 발송 이외의 목적으로 사용하지 않아요. 제3자에게 판매하거나 공유하지 않아요.</p>
+      </div>
+    </div>
+
+    <!-- 3. 보관 기간 -->
+    <div class="section">
+      <p class="section-title">03 · 보관 기간</p>
+      <p>구독 취소 시까지 보관해요. 구독 취소 후에는 지체 없이 파기해요.</p>
+    </div>
+
+    <!-- 4. 제3자 제공 -->
+    <div class="section">
+      <p class="section-title">04 · 제3자 제공</p>
+      <p>수집한 개인정보는 아래 서비스에만 저장돼요.</p>
+      <ul>
+        <li>Google Sheets — 구독자 목록 관리</li>
+        <li>Gmail — 뉴스레터 발송</li>
+      </ul>
+      <p style="margin-top:12px;">위 서비스 외 제3자에게 개인정보를 제공하지 않아요.</p>
+    </div>
+
+    <!-- 5. 권리 -->
+    <div class="section">
+      <p class="section-title">05 · 구독자의 권리</p>
+      <ul>
+        <li>언제든지 구독을 취소할 수 있어요 — 이메일 하단의 구독 취소 링크를 이용해요</li>
+        <li>수집된 개인정보의 열람, 수정, 삭제를 요청할 수 있어요</li>
+        <li>개인정보 처리에 대한 동의를 철회할 수 있어요</li>
+      </ul>
+    </div>
+
+    <!-- 6. 보안 -->
+    <div class="section">
+      <p class="section-title">06 · 개인정보 보호</p>
+      <p>개인정보는 Google의 보안 인프라 위에서 관리돼요. 비밀번호 등 민감한 정보는 수집하지 않아요.</p>
+    </div>
+
+    <!-- 7. 방침 변경 -->
+    <div class="section">
+      <p class="section-title">07 · 방침 변경</p>
+      <p>개인정보처리방침이 변경되면 이메일로 사전 안내해드려요. 변경된 방침은 공지 후 7일이 지나면 적용돼요.</p>
+    </div>
+
+    <!-- 문의 -->
+    <div class="contact-box">
+      <p><strong>개인정보 관련 문의</strong></p>
+      <p>firstwave.newsletter@gmail.com 으로 문의해주세요.<br>영업일 기준 3일 이내에 답변드릴게요.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <span class="footer-text">FIRSTWAVE · 매일 오전 8시 발신</span>
+    <a href="./subscribe.html" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--gray-500);text-decoration:none;">구독하기 →</a>
+  </footer>
+
+</body>
+</html>
