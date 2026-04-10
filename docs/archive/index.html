@@ -4,11 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FIRSTWAVE · 샘플 아카이브</title>
-  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/svg+xml" href="https://raw.githubusercontent.com/hyukjin0419/news_letter/main/docs/assets/logo.svg">
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --black: #0a0a0a;
       --white: #fafaf8;
@@ -17,209 +16,57 @@
       --gray-500: #8a8880;
       --gray-700: #4a4844;
     }
+    body { background: var(--white); color: var(--black); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
 
-    body {
-      background: var(--white);
-      color: var(--black);
-      font-family: 'DM Sans', sans-serif;
-      min-height: 100vh;
-    }
-
-    nav {
-      padding: 24px 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--gray-300);
-    }
-
+    nav { padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--gray-300); }
     .nav-logo { display: flex; flex-direction: column; gap: 3px; text-decoration: none; }
     .nav-right { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gray-500); letter-spacing: 0.08em; }
 
-    .hero {
-      padding: 80px 48px 48px;
-      border-bottom: 1px solid var(--gray-300);
-      max-width: 720px;
-    }
-
-    .hero-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      color: var(--gray-500);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .hero-label::before {
-      content: '';
-      display: inline-block;
-      width: 20px;
-      height: 1px;
-      background: var(--gray-300);
-    }
-
-    .hero-title {
-      font-size: clamp(36px, 6vw, 64px);
-      font-weight: 300;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      margin-bottom: 20px;
-    }
+    .hero { padding: 80px 48px 48px; border-bottom: 1px solid var(--gray-300); }
+    .hero-label { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gray-500); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+    .hero-label::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--gray-300); }
+    .hero-title { font-size: clamp(36px, 6vw, 64px); font-weight: 300; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 20px; }
     .hero-title em { font-style: normal; font-weight: 600; }
+    .hero-sub { font-size: 16px; color: var(--gray-500); font-weight: 300; line-height: 1.7; max-width: 480px; }
 
-    .hero-sub {
-      font-size: 16px;
-      color: var(--gray-500);
-      font-weight: 300;
-      line-height: 1.7;
-      max-width: 480px;
-    }
-
-    /* CTA 배너 */
-    .cta-banner {
-      margin: 0 48px;
-      padding: 20px 28px;
-      background: var(--black);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .cta-text {
-      font-size: 14px;
-      color: rgba(255,255,255,0.8);
-      font-weight: 300;
-      line-height: 1.5;
-    }
-
+    .cta-banner { margin: 24px 48px; padding: 20px 28px; background: var(--black); border-radius: 10px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .cta-text { font-size: 14px; color: rgba(255,255,255,0.8); font-weight: 300; line-height: 1.5; }
     .cta-text strong { color: #ffffff; font-weight: 500; }
-
-    .cta-btn {
-      flex-shrink: 0;
-      padding: 10px 20px;
-      font-size: 13px;
-      font-weight: 500;
-      font-family: 'DM Sans', sans-serif;
-      color: var(--black);
-      background: var(--white);
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: opacity 0.15s;
-      white-space: nowrap;
-    }
+    .cta-btn { flex-shrink: 0; padding: 10px 20px; font-size: 13px; font-weight: 500; font-family: 'DM Sans', sans-serif; color: var(--black); background: var(--white); border: none; border-radius: 6px; cursor: pointer; text-decoration: none; transition: opacity 0.15s; white-space: nowrap; }
     .cta-btn:hover { opacity: 0.85; }
 
     .archive-section { padding: 0 48px 80px; }
+    .section-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--gray-500); letter-spacing: 0.12em; text-transform: uppercase; padding: 28px 0 16px; display: block; }
 
-    .section-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      color: var(--gray-500);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 28px 0 0;
-      margin-bottom: 4px;
-    }
-
-    .archive-header {
-      display: grid;
-      grid-template-columns: 140px 1fr 80px;
-      gap: 24px;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--gray-300);
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      color: var(--gray-500);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .archive-list { list-style: none; }
-
-    .archive-item {
-      display: grid;
-      grid-template-columns: 140px 1fr 80px;
-      gap: 24px;
-      padding: 22px 0;
-      border-bottom: 1px solid var(--gray-100);
-      align-items: center;
+    /* 샘플 카드 */
+    .sample-card {
+      display: block;
       text-decoration: none;
       color: inherit;
-      transition: background 0.15s;
-    }
-
-    .archive-item:hover { background: var(--gray-100); margin: 0 -48px; padding: 22px 48px; }
-
-    .item-date { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--gray-500); }
-    .item-title { font-size: 15px; font-weight: 400; color: var(--black); line-height: 1.4; }
-    .item-badge {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      color: var(--gray-500);
-      background: var(--gray-100);
-      border: 1px solid var(--gray-300);
-      border-radius: 4px;
-      padding: 3px 8px;
-      text-align: center;
-      white-space: nowrap;
-    }
-
-    .item-arrow { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--gray-300); text-align: right; transition: color 0.15s; }
-    .archive-item:hover .item-arrow { color: var(--black); }
-
-    /* 구독 유도 카드 */
-    .subscribe-card {
-      margin-top: 32px;
-      padding: 28px 32px;
-      border: 1px dashed var(--gray-300);
-      border-radius: 10px;
-      text-align: center;
-    }
-
-    .subscribe-card-title {
-      font-size: 16px;
-      font-weight: 500;
-      color: var(--black);
-      margin-bottom: 8px;
-      letter-spacing: -0.01em;
-    }
-
-    .subscribe-card-desc {
-      font-size: 13px;
-      color: var(--gray-500);
-      font-weight: 300;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .subscribe-card-btn {
-      display: inline-block;
-      padding: 12px 24px;
-      font-size: 14px;
-      font-weight: 500;
-      font-family: 'DM Sans', sans-serif;
-      color: var(--white);
       background: var(--black);
-      border-radius: 8px;
-      text-decoration: none;
-      transition: opacity 0.15s;
+      border: 1px solid var(--black);
+      border-radius: 12px;
+      padding: 32px 36px;
+      transition: all 0.2s;
+      margin-bottom: 24px;
     }
+    .sample-card:hover { opacity: 0.85; }
+
+    .sample-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .sample-date { font-family: 'DM Mono', monospace; font-size: 12px; color: rgba(255,255,255,0.5); }
+    .sample-badge { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 700; color: var(--black); background: var(--white); padding: 3px 10px; border-radius: 4px; letter-spacing: 0.08em; }
+
+    .sample-title { font-size: 20px; font-weight: 600; color: var(--white); line-height: 1.4; letter-spacing: -0.01em; margin-bottom: 12px; }
+    .sample-desc { font-size: 14px; color: rgba(255,255,255,0.6); font-weight: 300; line-height: 1.6; margin-bottom: 24px; }
+    .sample-cta { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--white); font-weight: 500; }
+
+    .subscribe-card { margin-top: 32px; padding: 28px 32px; border: 1px dashed var(--gray-300); border-radius: 10px; text-align: center; }
+    .subscribe-card-title { font-size: 16px; font-weight: 500; color: var(--black); margin-bottom: 8px; letter-spacing: -0.01em; }
+    .subscribe-card-desc { font-size: 13px; color: var(--gray-500); font-weight: 300; line-height: 1.6; margin-bottom: 20px; }
+    .subscribe-card-btn { display: inline-block; padding: 12px 24px; font-size: 14px; font-weight: 500; font-family: 'DM Sans', sans-serif; color: var(--white); background: var(--black); border-radius: 8px; text-decoration: none; transition: opacity 0.15s; }
     .subscribe-card-btn:hover { opacity: 0.8; }
 
-    footer {
-      padding: 24px 48px;
-      border-top: 1px solid var(--gray-300);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+    footer { padding: 24px 48px; border-top: 1px solid var(--gray-300); display: flex; align-items: center; justify-content: space-between; }
     .footer-text { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gray-500); }
     .footer-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--black); display: inline-block; vertical-align: middle; margin-right: 6px; }
 
@@ -237,60 +84,45 @@
 
   <nav>
     <a class="nav-logo" href="../index.html">
-      <img src="https://raw.githubusercontent.com/hyukjin0419/news_letter/main/docs/assets/logo.svg"
-           width="130" height="44" alt="FIRSTWAVE" />
+      <img src="https://raw.githubusercontent.com/hyukjin0419/news_letter/main/docs/assets/logo.svg" width="130" height="44" alt="FIRSTWAVE" />
     </a>
     <span class="nav-right">SAMPLE ARCHIVE</span>
   </nav>
 
   <section class="hero">
     <p class="hero-label">샘플 아카이브</p>
-    <h1 class="hero-title">매일 아침, 이런<br><em>파도가 도착해요</em></h1>
-    <p class="hero-sub">구독하면 매일 오전 8시에 이런 뉴스레터가 와요. 지금 발송된 실제 샘플을 직접 확인해보세요.</p>
+    <h1 class="hero-title">매일 아침,<br><em>이런 파도가 도착해요.</em></h1>
+    <p class="hero-sub">구독하면 매일 오전 8시에 이런 뉴스레터가 와요.<br>실제 발송된 샘플을 직접 확인해보세요.</p>
   </section>
 
-  <!-- CTA 배너 -->
-  <div style="padding: 24px 48px;">
-    <div class="cta-banner">
-      <p class="cta-text">
-        <strong>선착순 500명까지 무료예요.</strong><br>
-        지금 구독하면 내일 아침부터 받아볼 수 있어요.
-      </p>
-      <a class="cta-btn" href="../subscribe.html">지금 구독하기 →</a>
-    </div>
-  </div>
-
   <section class="archive-section">
-    <p class="section-label">샘플</p>
+    <p class="section-label">실제 발송된 샘플</p>
 
-    <div class="archive-header">
-      <span>날짜</span>
-      <span>주요 기사</span>
-      <span></span>
-    </div>
+    <a class="sample-card" href="./sample-1.html">
+      <div class="sample-card-top">
+        <span class="sample-date">2026-04-10</span>
+        <span class="sample-badge">SAMPLE</span>
+      </div>
+      <h2 class="sample-title">France Launches Government Linux Desktop 외 2건</h2>
+      <p class="sample-desc">실제로 발송된 뉴스레터예요. 매일 이런 형태로 전달돼요.</p>
+      <div class="sample-cta">뉴스레터 샘플 보기 →</div>
+    </a>
 
-    <ul class="archive-list">
-      <li>
-        <a class="archive-item" href="./sample-1.html">
-          <span class="item-date">2026-04-10</span>
-          <span class="item-title">France Launches Government Linux Desktop... 외 2건</span>
-          <span class="item-arrow">→</span>
-        </a>
-      </li>
-    </ul>
-
-    <!-- 구독 유도 카드 -->
     <div class="subscribe-card">
       <p class="subscribe-card-title">매일 아침 이런 인사이트를 받고 싶다면</p>
-      <p class="subscribe-card-desc">선착순 500명까지 무료예요. 이후 신규 구독은 하루 100원이에요.<br>지금 바로 구독하고 내일 아침 첫 번째 파도를 받아보세요.</p>
+      <p class="subscribe-card-desc">선착순 500명까지 무료예요.<br>지금 바로 구독하고 내일 아침 첫 번째 파도를 받아보세요.</p>
       <a class="subscribe-card-btn" href="../subscribe.html">무료로 구독하기 →</a>
     </div>
 
   </section>
 
   <footer>
-    <span class="footer-text"><span class="footer-dot"></span>FIRSTWAVE · 매일 오전 8시 발신</span>
-    <span class="footer-text">선착순 500명 무료 · 이후 하루 100원</span>
+    <span class="footer-text"><span class="footer-dot"></span>FIRSTWAVE</span>
+    <span class="footer-text">
+      <a href="../privacy.html" style="color:var(--gray-500);text-decoration:none;">개인정보처리방침</a>
+      &nbsp;·&nbsp;
+      <a href="../terms_and_policy.html" style="color:var(--gray-500);text-decoration:none;">이용약관</a>
+    </span>
   </footer>
 
 </body>
