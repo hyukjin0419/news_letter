@@ -16,7 +16,6 @@
       --gray-300: #d0cec5;
       --gray-500: #8a8880;
       --gray-700: #4a4844;
-      --accent: #0a0a0a;
     }
 
     html { scroll-behavior: smooth; }
@@ -52,10 +51,21 @@
     }
     .nav-link:hover { color: var(--black); }
 
+    /* 전체 컨텐츠 중앙 정렬 컨테이너 */
+    .page-container {
+      max-width: 720px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
     /* HERO */
     .hero {
-      padding: 80px 48px 64px;
-      max-width: 680px;
+      padding: 80px 0 48px;
+      border-bottom: 1px solid var(--gray-100);
     }
 
     .hero-label {
@@ -79,7 +89,7 @@
     }
 
     .hero-title {
-      font-size: clamp(40px, 6vw, 64px);
+      font-size: clamp(36px, 5vw, 56px);
       font-weight: 300;
       line-height: 1.1;
       letter-spacing: -0.03em;
@@ -93,14 +103,14 @@
       color: var(--gray-500);
       line-height: 1.7;
       font-weight: 300;
-      max-width: 480px;
+      max-width: 520px;
     }
 
     /* STATS */
     .stats {
       display: flex;
       gap: 40px;
-      padding: 0 48px 64px;
+      padding: 36px 0;
       border-bottom: 1px solid var(--gray-100);
     }
 
@@ -110,8 +120,7 @@
 
     /* FORM SECTION */
     .form-section {
-      padding: 64px 48px;
-      flex: 1;
+      padding: 48px 0 80px;
     }
 
     .form-container {
@@ -129,7 +138,7 @@
     .form-subtitle {
       font-size: 14px;
       color: var(--gray-500);
-      margin-bottom: 40px;
+      margin-bottom: 36px;
       font-weight: 300;
     }
 
@@ -189,12 +198,7 @@
     .chip:hover { border-color: var(--gray-700); color: var(--black); }
     .chip.selected { background: var(--black); color: var(--white); border-color: var(--black); }
 
-    .chip-other {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
+    .chip-other { display: flex; align-items: center; gap: 6px; }
     .chip-other-input {
       display: none;
       width: 100px;
@@ -205,11 +209,10 @@
       border: none;
       outline: none;
     }
-
     .chip-other-input::placeholder { color: rgba(255,255,255,0.5); }
     .chip-other.selected .chip-other-input { display: block; }
 
-    /* CAREER SELECT */
+    /* CAREER */
     .career-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 
     .career-option {
@@ -243,7 +246,6 @@
       transition: opacity 0.15s;
       margin-top: 8px;
     }
-
     .submit-btn:hover { opacity: 0.8; }
     .submit-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
@@ -258,8 +260,6 @@
       display: none;
     }
 
-    .privacy-note a { color: var(--gray-500); text-decoration: underline; }
-
     .privacy-note {
       font-size: 12px;
       color: var(--gray-300);
@@ -267,33 +267,17 @@
       margin-top: 16px;
       line-height: 1.6;
     }
+    .privacy-note a { color: var(--gray-500); text-decoration: underline; }
+
+    /* SUCCESS */
     .success-state {
       display: none;
       text-align: center;
       padding: 48px 0;
     }
-
-    .success-icon {
-      font-family: 'DM Mono', monospace;
-      font-size: 40px;
-      margin-bottom: 20px;
-      display: block;
-    }
-
-    .success-title {
-      font-size: 24px;
-      font-weight: 500;
-      color: var(--black);
-      margin-bottom: 8px;
-      letter-spacing: -0.02em;
-    }
-
-    .success-desc {
-      font-size: 14px;
-      color: var(--gray-500);
-      font-weight: 300;
-      line-height: 1.6;
-    }
+    .success-icon { font-family: 'DM Mono', monospace; font-size: 40px; margin-bottom: 20px; display: block; }
+    .success-title { font-size: 24px; font-weight: 500; color: var(--black); margin-bottom: 8px; letter-spacing: -0.02em; }
+    .success-desc { font-size: 14px; color: var(--gray-500); font-weight: 300; line-height: 1.6; }
 
     /* FOOTER */
     footer {
@@ -303,13 +287,14 @@
       align-items: center;
       justify-content: space-between;
     }
-
     .footer-text { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gray-500); }
 
     @media (max-width: 600px) {
-      nav, .hero, .stats, .form-section, footer { padding-left: 24px; padding-right: 24px; }
-      .hero { padding-top: 48px; padding-bottom: 40px; }
-      .stats { padding-bottom: 40px; gap: 24px; }
+      nav { padding: 20px 24px; }
+      footer { padding: 20px 24px; }
+      .page-container { padding: 0 20px; }
+      .hero { padding-top: 48px; }
+      .stats { gap: 24px; flex-wrap: wrap; }
       .career-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
@@ -318,109 +303,99 @@
 
   <nav>
     <a class="nav-logo" href="./index.html">
-        <img src="https://raw.githubusercontent.com/hyukjin0419/news_letter/main/docs/assets/logo.svg" 
-        width="130" height="44" alt="FIRSTWAVE" />
+      <img src="https://raw.githubusercontent.com/hyukjin0419/news_letter/main/docs/assets/logo.svg"
+           width="130" height="44" alt="FIRSTWAVE" />
     </a>
     <a class="nav-link" href="./archive/index.html">ARCHIVE →</a>
   </nav>
 
-  <section class="hero">
-    <p class="hero-label">구독하기</p>
-    <h1 class="hero-title">기술의 첫 번째<br><strong>파도를 타세요</strong></h1>
-    <p class="hero-desc">매일 오전 8시, Hacker News 상위 기사를 AI가 분석해 핵심만 전달해드려요. 출근길 3분이면 충분해요.<br><br>선착순 <strong>500명까지 무료</strong>예요. 이후 신규 구독은 하루 100원이에요.</p>
-  </section>
+  <div class="page-container">
 
-  <div class="stats">
-    <div class="stat-item">
-      <span class="stat-num">매일</span>
-      <span class="stat-label">오전 8시 발송</span>
+    <section class="hero">
+      <p class="hero-label">구독하기</p>
+      <h1 class="hero-title">기술의 첫 번째<br><strong>파도를 타세요</strong></h1>
+      <p class="hero-desc">매일 오전 8시, Hacker News 상위 기사를 AI가 분석해 핵심만 전달해드려요. 출근길 3분이면 충분해요.<br><br>선착순 <strong>500명까지 무료</strong>예요. 이후 신규 구독은 하루 100원이에요.</p>
+    </section>
+
+    <div class="stats">
+      <div class="stat-item">
+        <span class="stat-num">매일</span>
+        <span class="stat-label">오전 8시 발송</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">3개</span>
+        <span class="stat-label">엄선된 기사</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" id="remainingCount">···</span>
+        <span class="stat-label">선착순 무료 자리 남음</span>
+      </div>
     </div>
-    <div class="stat-item">
-      <span class="stat-num">3개</span>
-      <span class="stat-label">엄선된 기사</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-num" id="remainingCount">···</span>
-      <span class="stat-label">선착순 무료 자리 남음</span>
-    </div>
-  </div>
 
-  <section class="form-section">
-    <div class="form-container">
+    <section class="form-section">
+      <div class="form-container">
 
-      <h2 class="form-title">지금 바로 구독하세요</h2>
-      <p class="form-subtitle">아래 정보를 입력하면 내일 아침부터 받아볼 수 있어요.</p>
+        <h2 class="form-title">지금 바로 구독하세요</h2>
+        <p class="form-subtitle">아래 정보를 입력하면 내일 아침부터 받아볼 수 있어요.</p>
 
-      <form id="subscribeForm">
+        <form id="subscribeForm">
 
-        <!-- 이메일 -->
-        <div class="field">
-          <label class="field-label" for="email">이메일</label>
-          <input class="field-input" type="email" id="email" name="email" placeholder="hello@example.com" required />
-        </div>
+          <div class="field">
+            <label class="field-label" for="email">이메일</label>
+            <input class="field-input" type="email" id="email" name="email" placeholder="hello@example.com" required />
+          </div>
 
-        <!-- 이름 -->
-        <div class="field">
-          <label class="field-label" for="name">
-            이름
-            <span class="optional">선택</span>
-          </label>
-          <input class="field-input" type="text" id="name" name="name" placeholder="홍길동" />
-        </div>
+          <div class="field">
+            <label class="field-label" for="name">이름 <span class="optional">선택</span></label>
+            <input class="field-input" type="text" id="name" name="name" placeholder="홍길동" />
+          </div>
 
-        <!-- 관심 분야 -->
-        <div class="field">
-          <label class="field-label">
-            관심 분야
-            <span class="optional">선택 · 복수 가능</span>
-          </label>
-          <div class="chips" id="interestChips">
-            <div class="chip" data-value="frontend" onclick="toggleChip(this)">프론트엔드</div>
-            <div class="chip" data-value="backend" onclick="toggleChip(this)">백엔드</div>
-            <div class="chip" data-value="ai_ml" onclick="toggleChip(this)">AI / ML</div>
-            <div class="chip" data-value="devops" onclick="toggleChip(this)">DevOps</div>
-            <div class="chip" data-value="security" onclick="toggleChip(this)">보안</div>
-            <div class="chip" data-value="mobile" onclick="toggleChip(this)">모바일</div>
-            <div class="chip" data-value="uiux" onclick="toggleChip(this)">UI / UX</div>
-            <div class="chip chip-other" onclick="toggleOther(this)">
-              <span>기타</span>
-              <input class="chip-other-input" type="text" placeholder="직접 입력" onclick="event.stopPropagation()" />
+          <div class="field">
+            <label class="field-label">관심 분야 <span class="optional">선택 · 복수 가능</span></label>
+            <div class="chips" id="interestChips">
+              <div class="chip" data-value="frontend" onclick="toggleChip(this)">프론트엔드</div>
+              <div class="chip" data-value="backend" onclick="toggleChip(this)">백엔드</div>
+              <div class="chip" data-value="ai_ml" onclick="toggleChip(this)">AI / ML</div>
+              <div class="chip" data-value="devops" onclick="toggleChip(this)">DevOps</div>
+              <div class="chip" data-value="security" onclick="toggleChip(this)">보안</div>
+              <div class="chip" data-value="mobile" onclick="toggleChip(this)">모바일</div>
+              <div class="chip" data-value="uiux" onclick="toggleChip(this)">UI / UX</div>
+              <div class="chip chip-other" onclick="toggleOther(this)">
+                <span>기타</span>
+                <input class="chip-other-input" type="text" placeholder="직접 입력" onclick="event.stopPropagation()" />
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- 연차 -->
-        <div class="field">
-          <label class="field-label">
-            직군 / 연차
-            <span class="optional">선택</span>
-          </label>
-          <div class="career-grid" id="careerGrid">
-            <div class="career-option" data-value="student" onclick="selectCareer(this)">학생 / 취준생</div>
-            <div class="career-option" data-value="junior" onclick="selectCareer(this)">주니어 (1~3년)</div>
-            <div class="career-option" data-value="mid" onclick="selectCareer(this)">미드레벨 (3~7년)</div>
-            <div class="career-option" data-value="senior" onclick="selectCareer(this)">시니어 (7년+)</div>
+          <div class="field">
+            <label class="field-label">직군 / 연차 <span class="optional">선택</span></label>
+            <div class="career-grid">
+              <div class="career-option" data-value="student" onclick="selectCareer(this)">학생 / 취준생</div>
+              <div class="career-option" data-value="junior" onclick="selectCareer(this)">주니어 (1~3년)</div>
+              <div class="career-option" data-value="mid" onclick="selectCareer(this)">미드레벨 (3~7년)</div>
+              <div class="career-option" data-value="senior" onclick="selectCareer(this)">시니어 (7년+)</div>
+            </div>
           </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">구독하기 →</button>
+          <div class="error-msg" id="errorMsg"></div>
+          <p class="privacy-note">
+            구독하면 <a href="./privacy.html">개인정보처리방침</a>에 동의하는 것으로 간주해요.<br>
+            언제든지 이메일 하단의 링크로 구독을 취소할 수 있어요.
+          </p>
+
+        </form>
+
+        <div class="success-state" id="successState">
+          <span class="success-icon">〰</span>
+          <h3 class="success-title">구독이 완료됐어요!</h3>
+          <p class="success-desc">내일 오전 8시, 첫 번째 파도를 전해드릴게요.<br>기대해주세요!</p>
         </div>
 
-        <button type="submit" class="submit-btn" id="submitBtn">구독하기 →</button>
-        <div class="error-msg" id="errorMsg"></div>
-        <p class="privacy-note">
-          구독하면 <a href="./privacy.html">개인정보처리방침</a>에 동의하는 것으로 간주해요.<br>
-          언제든지 이메일 하단의 링크로 구독을 취소할 수 있어요.
-        </p>
-
-      </form>
-
-      <!-- 성공 상태 -->
-      <div class="success-state" id="successState">
-        <span class="success-icon">〰</span>
-        <h3 class="success-title">구독이 완료됐어요!</h3>
-        <p class="success-desc">내일 오전 8시, 첫 번째 파도를 전해드릴게요.<br>기대해주세요!</p>
       </div>
+    </section>
 
-    </div>
-  </section>
+  </div>
 
   <footer>
     <span class="footer-text">FIRSTWAVE · 매일 오전 8시 발신</span>
@@ -428,7 +403,6 @@
   </footer>
 
   <script>
-    // Google Apps Script 웹앱 URL (배포 후 교체)
     const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxq8ElbmwtyJDHwcqvGGN4GdXO0VCAPl8ACoH-1r16OE7oEP18LFTxsVA7sh-Uml_9R/exec';
 
     function showError(msg) {
@@ -437,13 +411,11 @@
       el.style.display = 'block';
     }
 
-    // 페이지 로드 시 남은 자리 수 fetch
     async function loadRemainingCount() {
       try {
         const res = await fetch(APPS_SCRIPT_URL);
         const data = await res.json();
         const el = document.getElementById('remainingCount');
-
         if (data.isFull) {
           el.textContent = '마감';
           document.getElementById('submitBtn').disabled = true;
@@ -458,16 +430,12 @@
 
     loadRemainingCount();
 
-    function toggleChip(el) {
-      el.classList.toggle('selected');
-    }
+    function toggleChip(el) { el.classList.toggle('selected'); }
 
     function toggleOther(el) {
       el.classList.toggle('selected');
       const input = el.querySelector('.chip-other-input');
-      if (el.classList.contains('selected')) {
-        input.focus();
-      }
+      if (el.classList.contains('selected')) input.focus();
     }
 
     function selectCareer(el) {
