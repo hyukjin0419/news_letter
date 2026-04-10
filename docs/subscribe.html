@@ -342,8 +342,8 @@
       <span class="stat-label">엄선된 기사</span>
     </div>
     <div class="stat-item">
-      <span class="stat-num">500명</span>
-      <span class="stat-label">선착순 무료</span>
+      <span class="stat-num" id="remainingCount">···</span>
+      <span class="stat-label">선착순 무료 자리 남음</span>
     </div>
   </div>
 
@@ -438,6 +438,27 @@
       el.textContent = msg;
       el.style.display = 'block';
     }
+
+    // 페이지 로드 시 남은 자리 수 fetch
+    async function loadRemainingCount() {
+      try {
+        const res = await fetch(APPS_SCRIPT_URL);
+        const data = await res.json();
+        const el = document.getElementById('remainingCount');
+
+        if (data.isFull) {
+          el.textContent = '마감';
+          document.getElementById('submitBtn').disabled = true;
+          document.getElementById('submitBtn').textContent = '선착순 마감됐어요';
+        } else {
+          el.textContent = `${data.remaining}명`;
+        }
+      } catch (e) {
+        document.getElementById('remainingCount').textContent = '500명';
+      }
+    }
+
+    loadRemainingCount();
 
     function toggleChip(el) {
       el.classList.toggle('selected');
