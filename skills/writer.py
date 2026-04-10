@@ -14,7 +14,6 @@ HTML_TEMPLATE = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FIRSTWAVE · {date}</title>
-  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
 </head>
 <body style="margin:0;padding:0;background-color:#f0f0ee;font-family:Arial,sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;word-break:keep-all;">
 
@@ -37,7 +36,7 @@ HTML_TEMPLATE = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN
         </table>
 
         <!-- H-DIVIDER -->
-        <div style="height:1px;background-color:#efefeb;margin-bottom:20px;">&nbsp;</div>
+        <div style="height:1px;background-color:#efefeb;margin-bottom:20px;font-size:0;line-height:0;"></div>
 
         <!-- H-TITLE -->
         <p style="margin:0 0 10px 0;font-size:24px;font-weight:700;color:#0a0a0a;line-height:1.3;letter-spacing:-0.02em;font-family:Arial,sans-serif;word-break:keep-all;">오늘의 기술 첫 번째 파도,<br/>가장 먼저 전해드려요</p>
@@ -58,7 +57,7 @@ HTML_TEMPLATE = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN
               <span style="font-size:11px;color:#bbbbbb;font-family:Arial,sans-serif;">FIRSTWAVE &middot; 매일 오전 8시 발신</span>
             </td>
             <td align="right" style="vertical-align:middle;">
-              <span style="font-size:11px;color:#0a0a0a;font-weight:700;font-family:Arial,sans-serif;">&#9679; {date} 발행</span>
+              <span style="font-size:11px;color:#0a0a0a;font-weight:700;font-family:Arial,sans-serif;">&#9679; 오늘 발행</span>
             </td>
           </tr>
           <tr>
@@ -99,7 +98,7 @@ CARD_TEMPLATE = """
         <p style="margin:0 0 18px 0;font-size:17px;font-weight:700;color:#0a0a0a;line-height:1.45;letter-spacing:-0.01em;font-family:Arial,sans-serif;word-break:keep-all;">{headline}</p>
 
         <!-- C-DIVIDER -->
-        <div style="height:1px;background-color:#f0f0ec;margin-bottom:18px;">&nbsp;</div>
+        <div style="height:1px;background-color:#f0f0ec;margin-bottom:18px;font-size:0;line-height:0;"></div>
 
         <!-- C-POINTS -->
         <div style="margin-bottom:20px;">
@@ -109,7 +108,7 @@ CARD_TEMPLATE = """
         <!-- C-INSIGHT -->
         <div style="background-color:#f7f7f5;border-left:3px solid #0a0a0a;padding:16px 18px;border-radius:0 8px 8px 0;">
           <p style="margin:0 0 6px 0;font-size:12px;font-weight:700;color:#0a0a0a;letter-spacing:0.06em;font-family:Arial,sans-serif;">&#128161; 오늘의 인사이트</p>
-          <div style="height:1px;background-color:#e8e8e4;margin-bottom:8px;">&nbsp;</div>
+          <div style="height:1px;background-color:#e8e8e4;margin-bottom:8px;font-size:0;line-height:0;"></div>
           <p style="margin:0;font-size:13px;color:#555555;line-height:1.7;font-family:Arial,sans-serif;word-break:keep-all;">{insight}</p>
         </div>
 
