@@ -4,7 +4,7 @@ from datetime import datetime
 from litellm import completion
 
 WRITER_MODEL = "anthropic/claude-sonnet-4-6"
-LOGO_URL = "https://raw.githubusercontent.com/hyukjin0419/news_letter/main/assets/logo.svg"
+LOGO_URL = "https://raw.githubusercontent.com/hyukjin0419/news_letter/main/docs/assets/logo.svg"
 ARCHIVE_BASE_URL = "https://hyukjin0419.github.io/news_letter/archive"
 
 
