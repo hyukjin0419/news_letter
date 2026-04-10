@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FIRSTWAVE · 아카이브</title>
+  <title>FIRSTWAVE · 샘플 아카이브</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,22 +33,105 @@
     }
 
     .nav-logo { display: flex; flex-direction: column; gap: 3px; text-decoration: none; }
-    .nav-logo-name { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.12em; color: var(--black); }
     .nav-right { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gray-500); letter-spacing: 0.08em; }
 
-    .hero { padding: 80px 48px 48px; border-bottom: 1px solid var(--gray-300); }
-    .hero-label { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gray-500); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 20px; }
-    .hero-title { font-size: clamp(36px, 6vw, 72px); font-weight: 300; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 20px; }
+    .hero {
+      padding: 80px 48px 48px;
+      border-bottom: 1px solid var(--gray-300);
+      max-width: 720px;
+    }
+
+    .hero-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--gray-500);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-label::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--gray-300);
+    }
+
+    .hero-title {
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
     .hero-title em { font-style: normal; font-weight: 600; }
-    .hero-sub { font-size: 15px; color: var(--gray-500); font-weight: 300; }
+
+    .hero-sub {
+      font-size: 16px;
+      color: var(--gray-500);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 480px;
+    }
+
+    /* CTA 배너 */
+    .cta-banner {
+      margin: 0 48px;
+      padding: 20px 28px;
+      background: var(--black);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .cta-text {
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .cta-text strong { color: #ffffff; font-weight: 500; }
+
+    .cta-btn {
+      flex-shrink: 0;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 500;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--black);
+      background: var(--white);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.15s;
+      white-space: nowrap;
+    }
+    .cta-btn:hover { opacity: 0.85; }
 
     .archive-section { padding: 0 48px 80px; }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--gray-500);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 28px 0 0;
+      margin-bottom: 4px;
+    }
 
     .archive-header {
       display: grid;
       grid-template-columns: 140px 1fr 80px;
       gap: 24px;
-      padding: 20px 0;
+      padding: 16px 0;
       border-bottom: 1px solid var(--gray-300);
       font-family: 'DM Mono', monospace;
       font-size: 10px;
@@ -75,31 +158,59 @@
 
     .item-date { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--gray-500); }
     .item-title { font-size: 15px; font-weight: 400; color: var(--black); line-height: 1.4; }
+    .item-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--gray-500);
+      background: var(--gray-100);
+      border: 1px solid var(--gray-300);
+      border-radius: 4px;
+      padding: 3px 8px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
     .item-arrow { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--gray-300); text-align: right; transition: color 0.15s; }
     .archive-item:hover .item-arrow { color: var(--black); }
 
-    /* 페이지네이션 */
-    .pagination { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 40px 0 0; }
-    .page-btn {
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      padding: 8px 16px;
-      border: 1px solid var(--gray-300);
-      border-radius: 6px;
-      background: none;
-      color: var(--gray-700);
-      cursor: pointer;
-      transition: all 0.15s;
+    /* 구독 유도 카드 */
+    .subscribe-card {
+      margin-top: 32px;
+      padding: 28px 32px;
+      border: 1px dashed var(--gray-300);
+      border-radius: 10px;
+      text-align: center;
     }
-    .page-btn:hover { background: var(--black); color: var(--white); border-color: var(--black); }
-    .page-btn.active { background: var(--black); color: var(--white); border-color: var(--black); }
-    .page-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
-    .page-info { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gray-500); padding: 0 8px; }
+    .subscribe-card-title {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--black);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
 
-    .empty { padding: 80px 0; text-align: center; color: var(--gray-500); }
-    .empty-icon { font-family: 'DM Mono', monospace; font-size: 32px; margin-bottom: 16px; opacity: 0.3; }
-    .empty-text { font-size: 14px; font-weight: 300; }
+    .subscribe-card-desc {
+      font-size: 13px;
+      color: var(--gray-500);
+      font-weight: 300;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .subscribe-card-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 500;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--white);
+      background: var(--black);
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .subscribe-card-btn:hover { opacity: 0.8; }
 
     footer {
       padding: 24px 48px;
@@ -112,10 +223,12 @@
     .footer-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--black); display: inline-block; vertical-align: middle; margin-right: 6px; }
 
     @media (max-width: 600px) {
-      nav, .hero, .archive-section, footer { padding-left: 24px; padding-right: 24px; }
+      nav, .hero, .cta-banner, .archive-section, footer { padding-left: 24px; padding-right: 24px; }
+      .cta-banner { flex-direction: column; align-items: flex-start; }
       .archive-header, .archive-item { grid-template-columns: 100px 1fr; }
       .archive-header > *:last-child, .archive-item > *:last-child { display: none; }
       .archive-item:hover { margin: 0 -24px; padding: 22px 24px; }
+      .hero { padding-top: 48px; }
     }
   </style>
 </head>
@@ -123,112 +236,75 @@
 
   <nav>
     <a class="nav-logo" href="../index.html">
-      <img src="https://raw.githubusercontent.com/hyukjin0419/news_letter/main/docs/assets/logo.svg" 
-      width="130" height="44" alt="FIRSTWAVE" />
+      <img src="https://raw.githubusercontent.com/hyukjin0419/news_letter/main/docs/assets/logo.svg"
+           width="130" height="44" alt="FIRSTWAVE" />
     </a>
-    <span class="nav-right">ARCHIVE</span>
+    <span class="nav-right">SAMPLE ARCHIVE</span>
   </nav>
 
   <section class="hero">
-    <p class="hero-label">발송 기록</p>
-    <h1 class="hero-title">지금까지 보낸<br><em>모든 파도</em></h1>
-    <p class="hero-sub">매일 오전 8시, HN 상위 기사 3개를 분석해 전달해드려요</p>
+    <p class="hero-label">샘플 아카이브</p>
+    <h1 class="hero-title">매일 아침, 이런<br><em>파도가 도착해요</em></h1>
+    <p class="hero-sub">구독하면 매일 오전 8시에 이런 뉴스레터가 와요. 지금 발송된 실제 샘플을 직접 확인해보세요.</p>
   </section>
 
+  <!-- CTA 배너 -->
+  <div style="padding: 24px 48px;">
+    <div class="cta-banner">
+      <p class="cta-text">
+        <strong>선착순 500명까지 무료예요.</strong><br>
+        지금 구독하면 내일 아침부터 받아볼 수 있어요.
+      </p>
+      <a class="cta-btn" href="../subscribe.html">지금 구독하기 →</a>
+    </div>
+  </div>
+
   <section class="archive-section">
+    <p class="section-label">실제 발송된 샘플 · 3개</p>
+
     <div class="archive-header">
       <span>날짜</span>
       <span>주요 기사</span>
       <span></span>
     </div>
 
-    <ul class="archive-list" id="archiveList"></ul>
-    <div class="empty" id="emptyState" style="display:none;">
-      <div class="empty-icon">〰</div>
-      <p class="empty-text">아직 발송된 뉴스레터가 없어요</p>
+    <ul class="archive-list">
+      <li>
+        <a class="archive-item" href="./sample-1.html">
+          <span class="item-date">2026-04-08</span>
+          <span class="item-title">AI가 해커보다 취약점을 더 잘 찾는 시대, 우리 코드는 안전한가요</span>
+          <span class="item-arrow">→</span>
+        </a>
+      </li>
+      <li>
+        <a class="archive-item" href="./2026-04-07.html">
+          <span class="item-date">2026-04-07</span>
+          <span class="item-title">20년 만에 구글 광고를 껐습니다. 그리고 후회했습니다</span>
+          <span class="item-arrow">→</span>
+        </a>
+      </li>
+      <li>
+        <a class="archive-item" href="./2026-04-06.html">
+          <span class="item-date">2026-04-06</span>
+          <span class="item-title">Go의 nil을 없애버린 언어가 등장했어요</span>
+          <span class="item-arrow">→</span>
+        </a>
+      </li>
+    </ul>
+
+    <!-- 구독 유도 카드 -->
+    <div class="subscribe-card">
+      <p class="subscribe-card-title">매일 아침 이런 인사이트를 받고 싶다면</p>
+      <p class="subscribe-card-desc">선착순 500명까지 무료예요. 이후 신규 구독은 하루 100원이에요.<br>지금 바로 구독하고 내일 아침 첫 번째 파도를 받아보세요.</p>
+      <a class="subscribe-card-btn" href="../subscribe.html">무료로 구독하기 →</a>
     </div>
 
-    <div class="pagination" id="pagination"></div>
   </section>
 
   <footer>
     <span class="footer-text"><span class="footer-dot"></span>FIRSTWAVE · 매일 오전 8시 발신</span>
-    <span class="footer-text" id="totalCount"></span>
+    <span class="footer-text">선착순 500명 무료 · 이후 하루 100원</span>
   </footer>
-
-  <script>
-    const PER_PAGE = 10;
-    let currentPage = 1;
-    let allArchives = [];
-
-    async function loadArchives() {
-      try {
-        const res = await fetch('./archive.json');
-        allArchives = await res.json();
-      } catch (e) {
-        allArchives = [];
-      }
-      render();
-    }
-
-    function render() {
-      const list = document.getElementById('archiveList');
-      const empty = document.getElementById('emptyState');
-      const pagination = document.getElementById('pagination');
-      const totalCount = document.getElementById('totalCount');
-
-      list.innerHTML = '';
-      pagination.innerHTML = '';
-
-      if (allArchives.length === 0) {
-        empty.style.display = 'block';
-        return;
-      }
-
-      empty.style.display = 'none';
-      totalCount.textContent = `총 ${allArchives.length}개`;
-
-      // 현재 페이지 항목
-      const start = (currentPage - 1) * PER_PAGE;
-      const items = allArchives.slice(start, start + PER_PAGE);
-
-      items.forEach(item => {
-        const li = document.createElement('li');
-        li.innerHTML = `
-          <a class="archive-item" href="./${item.date}.html">
-            <span class="item-date">${item.date}</span>
-            <span class="item-title">${item.title}</span>
-            <span class="item-arrow">→</span>
-          </a>`;
-        list.appendChild(li);
-      });
-
-      // 페이지네이션
-      const totalPages = Math.ceil(allArchives.length / PER_PAGE);
-      if (totalPages <= 1) return;
-
-      const prevBtn = document.createElement('button');
-      prevBtn.className = 'page-btn';
-      prevBtn.textContent = '← 이전';
-      prevBtn.disabled = currentPage === 1;
-      prevBtn.onclick = () => { currentPage--; render(); window.scrollTo(0, 0); };
-      pagination.appendChild(prevBtn);
-
-      const info = document.createElement('span');
-      info.className = 'page-info';
-      info.textContent = `${currentPage} / ${totalPages}`;
-      pagination.appendChild(info);
-
-      const nextBtn = document.createElement('button');
-      nextBtn.className = 'page-btn';
-      nextBtn.textContent = '다음 →';
-      nextBtn.disabled = currentPage === totalPages;
-      nextBtn.onclick = () => { currentPage++; render(); window.scrollTo(0, 0); };
-      pagination.appendChild(nextBtn);
-    }
-
-    loadArchives();
-  </script>
 
 </body>
 </html>
