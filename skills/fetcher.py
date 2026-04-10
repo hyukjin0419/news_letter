@@ -32,7 +32,7 @@ ARTICLE_MAX_LENGTH = 5000
 ARTICLE_HEAD_LENGTH = 4000
 ARTICLE_TAIL_LENGTH = 1000
 
-SENT_URLS_FILE = "../archive/sent_urls.json"
+SENT_URLS_FILE = "../docs/archive/sent_urls.json"
 
 
 def load_sent_urls() -> set:
