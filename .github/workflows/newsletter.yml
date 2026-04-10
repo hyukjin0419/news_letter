@@ -2,7 +2,7 @@ name: FIRSTWAVE 뉴스레터 발송
 
 on:
   schedule:
-    - cron: '0 23 * * *'  # 매일 UTC 23:00 = KST 08:00
+    - cron: '30 22 * * *'  # 매일 UTC 22:30 = KST 07:30 (지연 감안해도 8시 이전)
   workflow_dispatch:        # 수동 실행 가능
 
 jobs:
