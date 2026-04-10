@@ -33,7 +33,8 @@ def main():
         if not final_html:
             return
         subject = f"[테스트] 🌊 FIRSTWAVE · {today} 기술 브리핑"
-        send_email(MY_EMAIL, subject, final_html)
+        personalized_html = final_html.replace('__EMAIL__', MY_EMAIL)
+        send_email(MY_EMAIL, subject, personalized_html)
         print(f"  ✅ {MY_EMAIL} 발송 완료")
         return
 
@@ -61,7 +62,8 @@ def main():
         return
 
     subject = f"🌊 FIRSTWAVE · {today} 기술 브리핑"
-    if send_email(MY_EMAIL, subject, final_html):
+    personalized_html = final_html.replace('__EMAIL__', MY_EMAIL)
+    if send_email(MY_EMAIL, subject, personalized_html):
         print(f"\n✅ 발송 완료 → {MY_EMAIL}")
     else:
         print(f"\n❌ 발송 실패 → {MY_EMAIL}")

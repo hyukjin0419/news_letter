@@ -1,7 +1,8 @@
 import json
 from litellm import completion
 
-ANALYZER_MODEL = "gemini/gemini-2.5-flash"
+# ANALYZER_MODEL = "gemini/gemini-2.5-flash"
+ANALYZER_MODEL = "anthropic/claude-haiku-4-5-20251001"
 
 
 def _parse_json_response(raw: str) -> dict | None:

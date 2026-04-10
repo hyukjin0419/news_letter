@@ -62,7 +62,7 @@ HTML_TEMPLATE = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN
           </tr>
           <tr>
             <td colspan="2" style="padding-top:10px;border-top:1px solid #f0f0ee;text-align:center;">
-              <a href="https://hyukjin0419.github.io/news_letter/unsubscribe.html?email={{email}}" 
+              <a href="https://hyukjin0419.github.io/news_letter/unsubscribe.html?email=__EMAIL__" 
                  style="font-size:11px;color:#bbbbbb;font-family:Arial,sans-serif;text-decoration:underline;">
                 구독 취소
               </a>

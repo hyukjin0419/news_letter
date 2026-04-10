@@ -34,7 +34,7 @@ def send_to_all(subscribers: list[str], subject: str, html: str) -> tuple[int, i
     success, fail = 0, 0
     for email in subscribers:
         # 구독 취소 링크에 개인 이메일 삽입
-        personalized_html = html.replace('{{email}}', email)
+        personalized_html = html.replace('__EMAIL__', email)
         if send_email(email, subject, personalized_html):
             print(f"  ✅ {email}")
             success += 1
