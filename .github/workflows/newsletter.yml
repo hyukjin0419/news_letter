@@ -1,0 +1,50 @@
+name: FIRSTWAVE 뉴스레터 발송
+
+on:
+  schedule:
+    - cron: '0 23 * * *'  # 매일 UTC 23:00 = KST 08:00
+  workflow_dispatch:        # 수동 실행 가능
+
+jobs:
+  send-newsletter:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 코드 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Python 설정
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 의존성 설치
+        run: |
+          cd skills
+          pip install -r requirements.txt
+
+      - name: Google credentials 파일 생성
+        run: |
+          echo '${{ secrets.GOOGLE_CREDENTIALS }}' > credentials.json
+
+      - name: .env 파일 생성
+        run: |
+          cat > skills/.env << EOF
+          GMAIL_USER=${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD=${{ secrets.GMAIL_APP_PASSWORD }}
+          ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
+          EOF
+
+      - name: 뉴스레터 실행
+        run: |
+          cd skills
+          python main.py
+
+      - name: 아카이브 변경사항 커밋 & 푸시
+        run: |
+          git config user.name "FIRSTWAVE Bot"
+          git config user.email "firstwave.newsletter@gmail.com"
+          git add docs/archive/
+          git diff --staged --quiet || git commit -m "📬 $(date '+%Y-%m-%d') 뉴스레터 아카이브 업데이트"
+          git push
