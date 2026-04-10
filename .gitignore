@@ -47,6 +47,7 @@ logs/
 .idea/
 *.swp
 *.swo
+.claude/
 
 # --- OS Specific ---
 # 운영체제 생성 임시 파일
