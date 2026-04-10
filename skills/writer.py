@@ -57,7 +57,7 @@ HTML_TEMPLATE = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN
               <span style="font-size:11px;color:#bbbbbb;font-family:Arial,sans-serif;">FIRSTWAVE &middot; 매일 오전 8시 발신</span>
             </td>
             <td align="right" style="vertical-align:middle;">
-              <span style="font-size:11px;color:#0a0a0a;font-weight:700;font-family:Arial,sans-serif;">&#9679; 오늘 발행</span>
+              <span style="font-size:11px;color:#0a0a0a;font-weight:700;font-family:Arial,sans-serif;">&#9679; {date} 발행</span>
             </td>
           </tr>
           <tr>
