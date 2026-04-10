@@ -14,21 +14,14 @@ HTML_TEMPLATE = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FIRSTWAVE · {date}</title>
-  <style type="text/css">
-    @media only screen and (max-width: 480px) {{
-      .outer  {{ padding: 4px 2px !important; }}
-      .card   {{ padding: 7px 4px !important; }}
-      .footer {{ padding: 5px 4px !important; }}
-    }}
-  </style>
 </head>
 <body style="margin:0;padding:0;background-color:#f0f0ee;font-family:Arial,sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;word-break:keep-all;">
 
-  <div class="outer" style="background-color:#f0f0ee;padding:24px 8px;">
+  <div style="background-color:#f0f0ee;padding:36px 16px;">
     <div style="max-width:560px;margin:0 auto;width:100%;">
 
       <!-- ===== HEADER ===== -->
-      <div class="card" style="background-color:#ffffff;border:1px solid #e0e0dc;border-radius:12px;padding:20px 16px 16px;margin-bottom:10px;">
+      <div style="background-color:#ffffff;border:1px solid #e0e0dc;border-radius:12px;padding:32px 36px 28px;margin-bottom:10px;">
 
         <!-- H-LOGO + H-DATE -->
         <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;">
@@ -43,13 +36,13 @@ HTML_TEMPLATE = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN
         </table>
 
         <!-- H-DIVIDER -->
-        <div style="height:1px;background-color:#efefeb;margin-bottom:20px;font-size:0;line-height:0;"> </div>
+        <div style="height:1px;background-color:#efefeb;margin-bottom:20px;">&nbsp;</div>
 
         <!-- H-TITLE -->
         <p style="margin:0 0 10px 0;font-size:24px;font-weight:700;color:#0a0a0a;line-height:1.3;letter-spacing:-0.02em;font-family:Arial,sans-serif;word-break:keep-all;">오늘의 기술 첫 번째 파도,<br/>가장 먼저 전해드려요</p>
 
         <!-- H-SUB -->
-        <p style="margin:0;font-size:14px;color:#999999;font-family:Arial,sans-serif;">매일 오전 8시 &middot; HN 상위 3개 엄선</p>
+        <p style="margin:0;font-size:13px;color:#999999;font-family:Arial,sans-serif;">매일 오전 8시 &middot; HN 상위 3개 엄선</p>
 
       </div>
 
@@ -57,7 +50,7 @@ HTML_TEMPLATE = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN
       {news_blocks}
 
       <!-- ===== FOOTER ===== -->
-      <div class="footer" style="background-color:#ffffff;border:1px solid #e0e0dc;border-radius:12px;padding:14px 16px;">
+      <div style="background-color:#ffffff;border:1px solid #e0e0dc;border-radius:12px;padding:18px 36px;">
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
           <tr>
             <td style="vertical-align:middle;">
@@ -65,6 +58,14 @@ HTML_TEMPLATE = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN
             </td>
             <td align="right" style="vertical-align:middle;">
               <span style="font-size:11px;color:#0a0a0a;font-weight:700;font-family:Arial,sans-serif;">&#9679; 오늘 발행</span>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" style="padding-top:10px;border-top:1px solid #f0f0ee;text-align:center;">
+              <a href="https://hyukjin0419.github.io/news_letter/unsubscribe.html?email={{email}}" 
+                 style="font-size:11px;color:#bbbbbb;font-family:Arial,sans-serif;text-decoration:underline;">
+                구독 취소
+              </a>
             </td>
           </tr>
         </table>
@@ -79,7 +80,7 @@ HTML_TEMPLATE = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN
 
 CARD_TEMPLATE = """
       <!-- CARD -->
-      <div class="card" style="background-color:#ffffff;border:1px solid #e0e0dc;border-radius:12px;padding:20px 16px;margin-bottom:10px;word-break:keep-all;">
+      <div style="background-color:#ffffff;border:1px solid #e0e0dc;border-radius:12px;padding:28px 36px;margin-bottom:10px;word-break:keep-all;">
 
         <!-- C-BADGE + C-META -->
         <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:14px;">
@@ -94,10 +95,10 @@ CARD_TEMPLATE = """
         </table>
 
         <!-- C-TITLE -->
-        <p style="margin:0 0 18px 0;font-size:18px;font-weight:700;color:#0a0a0a;line-height:1.45;letter-spacing:-0.01em;font-family:Arial,sans-serif;word-break:keep-all;">{headline}</p>
+        <p style="margin:0 0 18px 0;font-size:17px;font-weight:700;color:#0a0a0a;line-height:1.45;letter-spacing:-0.01em;font-family:Arial,sans-serif;word-break:keep-all;">{headline}</p>
 
         <!-- C-DIVIDER -->
-        <div style="height:1px;background-color:#f0f0ec;margin-bottom:18px;font-size:0;line-height:0;"> </div>
+        <div style="height:1px;background-color:#f0f0ec;margin-bottom:18px;">&nbsp;</div>
 
         <!-- C-POINTS -->
         <div style="margin-bottom:20px;">
@@ -107,8 +108,8 @@ CARD_TEMPLATE = """
         <!-- C-INSIGHT -->
         <div style="background-color:#f7f7f5;border-left:3px solid #0a0a0a;padding:16px 18px;border-radius:0 8px 8px 0;">
           <p style="margin:0 0 6px 0;font-size:12px;font-weight:700;color:#0a0a0a;letter-spacing:0.06em;font-family:Arial,sans-serif;">&#128161; 오늘의 인사이트</p>
-          <div style="height:1px;background-color:#e8e8e4;margin-bottom:8px;font-size:0;line-height:0;"> </div>
-          <p style="margin:0;font-size:16px;color:#555555;line-height:1.8;font-family:Arial,sans-serif;word-break:keep-all;">{insight}</p>
+          <div style="height:1px;background-color:#e8e8e4;margin-bottom:8px;">&nbsp;</div>
+          <p style="margin:0;font-size:13px;color:#555555;line-height:1.7;font-family:Arial,sans-serif;word-break:keep-all;">{insight}</p>
         </div>
 
       </div>"""
@@ -118,7 +119,7 @@ POINT_ROW_TEMPLATE = """
           <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-bottom:1px solid #f5f5f3;">
             <tr>
               <td width="18" valign="top" style="padding:8px 0;font-size:14px;color:#0a0a0a;line-height:1.6;">&#8226;</td>
-              <td style="padding:8px 0;font-size:15px;color:#333333;line-height:1.8;font-family:Arial,sans-serif;word-break:keep-all;">{point_text}</td>
+              <td style="padding:8px 0;font-size:13px;color:#333333;line-height:1.7;font-family:Arial,sans-serif;word-break:keep-all;">{point_text}</td>
             </tr>
           </table>"""
 
@@ -179,8 +180,6 @@ Gemini가 분석한 내용을 바탕으로, 한국 개발자들이 출근길에 
 1. headline: 호기심 자극형 제목 (이모지 없이 텍스트만)
 2. body: 핵심 3가지 <li> 포인트, 기술 용어는 <code> 태그로 강조
 3. insight: 동료에게 해주는 진심 어린 조언 (이모지 없이 텍스트만)
-   - 이 기술을 실제로 도입할 때 생길 수 있는 한 가지 함정이나, 아직 아무도 말 안 해준 진짜 포인트를 써줘.
-   - "앞으로 중요해질 기술입니다" 같은 뻔한 말은 금지.
 
 [출력 형식] JSON만 출력, 다른 텍스트 없이:
 {{
@@ -193,8 +192,8 @@ Gemini가 분석한 내용을 바탕으로, 한국 개발자들이 출근길에 
   ]
 }}
 
-
 데이터: {json.dumps(payload, ensure_ascii=False)}"""
+
     try:
         response = completion(
             model=WRITER_MODEL,
@@ -205,8 +204,6 @@ Gemini가 분석한 내용을 바탕으로, 한국 개발자들이 출근길에 
 
         raw = response.choices[0].message.content
         print(f"  ✅ Claude 응답 수신 ({len(raw)}자)")
-
-        raw = re.sub(r"```json|```", "", raw).strip()
 
         json_match = re.search(r'\{.*\}', raw, re.DOTALL)
         if not json_match:
