@@ -1,9 +1,9 @@
 import os
 import json
 
-ARCHIVE_DIR = "../archive"
-ARCHIVE_JSON = "../archive/archive.json"
-SENT_URLS_FILE = "../archive/sent_urls.json"
+ARCHIVE_DIR = "../docs/archive"
+ARCHIVE_JSON = "../docs/archive/archive.json"
+SENT_URLS_FILE = "../docs/archive/sent_urls.json"
 
 
 def save_newsletter(html: str, date: str, stories: list) -> None:
