@@ -1,6 +1,6 @@
 import json
 import re
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from litellm import completion
 
 WRITER_MODEL = "anthropic/claude-sonnet-4-6"
@@ -210,7 +210,8 @@ Gemini가 분석한 내용을 바탕으로, 한국 개발자들이 출근길에 
             raise ValueError("응답에서 JSON 구조를 찾을 수 없습니다.")
 
         data = json.loads(json_match.group())
-        today = datetime.now().strftime("%Y-%m-%d")
+        KST = timezone(timedelta(hours=9))
+        today = datetime.now(KST).strftime("%Y-%m-%d")
 
         blocks_html = ""
         for i, b in enumerate(data.get('blocks', [])):
@@ -229,9 +230,10 @@ Gemini가 분석한 내용을 바탕으로, 한국 개발자들이 출근길에 
             news_blocks=blocks_html,
             logo_url=LOGO_URL,
         )
+        headlines = [b['headline'] for b in data.get('blocks', [])]
         print(f"  ✅ FIRSTWAVE 이메일 HTML 생성 완료 ({len(html)}자)")
-        return html
+        return html, headlines
 
     except Exception as e:
         print(f"  ❌ [Writer] 작문 실패: {e}")
-        return None
+        return None, []

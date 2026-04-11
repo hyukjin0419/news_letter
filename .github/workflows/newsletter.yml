@@ -47,4 +47,5 @@ jobs:
           git config user.email "firstwave.newsletter@gmail.com"
           git add docs/archive/
           git diff --staged --quiet || git commit -m "📬 $(date '+%Y-%m-%d') 뉴스레터 아카이브 업데이트"
+          git pull --rebase origin main
           git push

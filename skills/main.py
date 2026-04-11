@@ -1,5 +1,5 @@
 import sys
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
 from fetcher import fetch_top_tech_news
 from analyzer import deep_analyze_tech
@@ -10,7 +10,8 @@ from archive import save_newsletter, load_latest_html
 
 
 def main():
-    today = datetime.now().strftime("%Y-%m-%d")
+    KST = timezone(timedelta(hours=9))
+    today = datetime.now(KST).strftime("%Y-%m-%d")
     is_test = "--test" in sys.argv
     is_preview = "--preview" in sys.argv
 
@@ -55,13 +56,13 @@ def main():
     analyzed = deep_analyze_tech(stories)
 
     print("\n✍️  [3] Claude 작문 중...")
-    final_html = write_newsletter(analyzed)
+    final_html, headlines = write_newsletter(analyzed)
     if not final_html:
         print("❌ 뉴스레터 생성 실패")
         return
 
     print("\n💾 [4] 아카이브 저장 중...")
-    save_newsletter(final_html, today, stories)
+    save_newsletter(final_html, today, stories, headlines)
 
     # 미리보기 모드는 발송 없이 종료
     if is_preview:

@@ -6,7 +6,7 @@ ARCHIVE_JSON = "../docs/archive/archive.json"
 SENT_URLS_FILE = "../docs/archive/sent_urls.json"
 
 
-def save_newsletter(html: str, date: str, stories: list) -> None:
+def save_newsletter(html: str, date: str, stories: list, headlines: list = None) -> None:
     """발송한 HTML 저장 + archive.json + sent_urls.json 업데이트"""
     os.makedirs(ARCHIVE_DIR, exist_ok=True)
 
@@ -17,8 +17,9 @@ def save_newsletter(html: str, date: str, stories: list) -> None:
     print(f"  ✅ HTML 저장 완료 → archive/{date}.html")
 
     # 2. archive.json 업데이트
-    first_title = stories[0].get("title", "") if stories else ""
-    title_display = f"{first_title[:40]}{'...' if len(first_title) > 40 else ''} 외 {len(stories)-1}건" if len(stories) > 1 else first_title[:40]
+    titles = headlines if headlines else [s.get("title", "") for s in stories]
+    first_title = titles[0] if titles else ""
+    title_display = f"{first_title[:40]} 외 {len(titles)-1}건" if len(titles) > 1 else first_title[:40]
     new_entry = {"date": date, "title": title_display}
 
     archives = _load_json(ARCHIVE_JSON, default=[])
