@@ -13,21 +13,37 @@ jobs:
       - name: 코드 체크아웃
         uses: actions/checkout@v4
 
+      - name: 오늘 이미 발송했는지 확인
+        id: check
+        run: |
+          TODAY=$(TZ='Asia/Seoul' date +%Y-%m-%d)
+          if [ -f "docs/archive/${TODAY}.html" ]; then
+            echo "already_sent=true" >> $GITHUB_OUTPUT
+            echo "⚠️ 오늘($TODAY) 이미 발송됨. 스킵."
+          else
+            echo "already_sent=false" >> $GITHUB_OUTPUT
+            echo "✅ 오늘($TODAY) 미발송. 진행."
+          fi
+
       - name: Python 설정
+        if: steps.check.outputs.already_sent == 'false'
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
       - name: 의존성 설치
+        if: steps.check.outputs.already_sent == 'false'
         run: |
           cd skills
           pip install -r requirements.txt
 
       - name: Google credentials 파일 생성
+        if: steps.check.outputs.already_sent == 'false'
         run: |
           echo '${{ secrets.GOOGLE_CREDENTIALS }}' > credentials.json
 
       - name: .env 파일 생성
+        if: steps.check.outputs.already_sent == 'false'
         run: |
           cat > skills/.env << EOF
           GMAIL_USER=${{ secrets.GMAIL_USER }}
@@ -37,11 +53,13 @@ jobs:
           EOF
 
       - name: 뉴스레터 실행
+        if: steps.check.outputs.already_sent == 'false'
         run: |
           cd skills
           python main.py
 
       - name: 아카이브 변경사항 커밋 & 푸시
+        if: steps.check.outputs.already_sent == 'false'
         run: |
           git config user.name "FIRSTWAVE Bot"
           git config user.email "firstwave.newsletter@gmail.com"
